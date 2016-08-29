@@ -1,0 +1,63 @@
+<html>
+<head>
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<style>
+#anim{
+    width: 256px;
+    height: 256px;
+    background-image: url(b.png);
+}
+</style>
+</head>
+    <body>
+
+<div id="anim"></div>
+
+
+
+
+<script type="text/javascript">
+var div,
+    imageWidth = 2048,
+    imageHeight = 2048,
+    frameWidth = 256,
+    frameHeight = 256,
+    curFrame = { x: 0, y: 0 };
+
+function init(){
+    div = document.getElementById('anim');
+    loop();
+    setInterval(loop, 1000 / 60);
+}
+
+function loop()
+{
+    var xOffset = frameWidth * curFrame.x,
+        yOffset = frameHeight * curFrame.y;
+
+    div.style.backgroundPosition = -(xOffset) + "px " + -(yOffset) + "px";
+
+    // if we can, iterate to the next column
+    if ((xOffset + frameWidth) < imageWidth) {
+        curFrame.x += 1;
+
+    // else if we can, drop down a row
+    } else if ((yOffset + frameHeight) < imageHeight) {
+        curFrame.x = 0;
+        curFrame.y += 1;
+
+    // reset
+    } else {
+        curFrame.x = 0;
+        curFrame.y = 0;
+    }
+}
+
+init();
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE>
+<html>
+<head>
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="0">
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="../css/normalize.css" rel="stylesheet">
+    <link href="../css/battle.css" rel="stylesheet">
+    <script src="../js/jquery-3.1.0.min.js"></script>
+    <script src="../js/velocity.min.js"></script>
+    <script src="../js/audio.js"></script>
+    <script src="../js/check.js"></script>
+</head>
+<body>
+<div id="battle">
+
+<div id="skill" class="skill">
+    <img src="../img/skill/attack.png">
+</div>
+
+<span id="skill_num" class="skill_num">
+    -2332
+</span>
+
+<center>
+
+<div class="top">
+      <div style="margin-top: 16px;">
+          <img onclick="action_queue()" class="card" id='e4' src="../img/c1.png">
+          <img class="card" id='e5' src="../img/c2.png">
+          <img class="card" id='e6' src="../img/c3.png">
+      </div>
+      <div style="margin-top: 3px;">
+          <div class="div_progress" id="progress_e4">
+              <div class="progress" style="width: 10%;"></div>
+          </div>
+          <div class="div_progress" id="progress_e5">
+              <div class="progress" style="width: 90%;"></div>
+          </div>
+          <div class="div_progress" id="progress_e6">
+              <div class="progress" style="width: 50%;"></div>
+          </div>
+      </div>
+      <div style="margin-top: 12px;">
+          <img class="card" id='e1' src="../img/c4.png">
+          <img class="card" id='e2' src="../img/c5.png">
+          <img class="card" id='e3' src="../img/c6.png">
+      </div>
+      <div style="margin-top: 3px;">
+          <div class="div_progress" id="progress_e1">
+              <div class="progress" style="width: 10%;"></div>
+          </div>
+          <div class="div_progress" id="progress_e2">
+              <div class="progress" style="width: 90%;"></div>
+          </div>
+          <div class="div_progress" id="progress_e3">
+              <div class="progress" style="width: 50%;"></div>
+          </div>
+      </div>
+</div>
+
+<div class="bottom">
+      <div style="margin-bottom: 3px;">
+          <img class="card" id='m1' src="../img/c1.png">
+          <img class="card" id='m2' src="../img/c2.png">
+          <img class="card" id='m3' src="../img/c3.png">
+      </div>
+      <div style="margin-bottom: 12px;">
+          <div class="div_progress" id="progress_m1">
+              <div class="progress" style="width: 10%;"></div>
+          </div>
+          <div class="div_progress" id="progress_m2">
+              <div class="progress" style="width: 90%;"></div>
+          </div>
+          <div class="div_progress" id="progress_m3">
+              <div class="progress" style="width: 50%;"></div>
+          </div>
+      </div>
+      <div style="margin-bottom: 3px;">
+          <img class="card" id='m4' src="../img/c4.png">
+          <img class="card" id='m5' src="../img/c5.png">
+          <img class="card" id='m6' src="../img/c6.png">
+      </div>
+      <div style="margin-bottom: 16px;">
+          <div class="div_progress" id="progress_m4">
+              <div class="progress" style="width: 10%;"></div>
+          </div>
+          <div class="div_progress" id="progress_m5">
+              <div class="progress" style="width: 90%;"></div>
+          </div>
+          <div class="div_progress" id="progress_m6">
+              <div class="progress" style="width: 50%;"></div>
+          </div>
+      </div>
+</div>
+
+
+</center>
+
+<script>
+// 检测性能插件
+var stats = new Stats();
+stats.showPanel( 0 ); // 0: fps, 1: ms, 2: mb, 3+: custom
+document.body.appendChild( stats.dom );
+function animate()
+{
+    stats.begin();
+    stats.end();
+    requestAnimationFrame( animate );
+}
+requestAnimationFrame( animate );
+
+// 兼容性修正
+window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+</script>
+
+<script>
+// 组件库
+function playAudio(filename, format)
+{
+    var audio5js = new Audio5js
+    ({
+        ready: function ()
+        {
+            this.load('../mp3/' + filename + '.' + format);
+            this.play();
+            // Audio 播放状态监控
+            // this.on('play', function () { console.log('play'); }, this);
+            // this.on('pause', function () { console.log('pause'); }, this);
+            this.on('ended', function () { this.destroy(); }, this);
+        }
+    });
+}
+
+function playAnim(div,eId,time,duringTime,way)
+{
+    switch (way) {
+        case 'close':
+            var x = document.getElementById(eId).getBoundingClientRect().left;
+            var y = document.getElementById(eId).getBoundingClientRect().top;
+
+            $("#"+div).css('left', x);
+            $("#"+div).css('top', y);
+            $("#"+div).css('z-index', 2);
+
+            $("#"+div)
+                .velocity("fadeIn", { duration: time })
+                .velocity({
+                    translateZ: 0,
+                }, { duration: duringTime })
+                .velocity("fadeOut", { duration: time });
+            break;
+
+        case 'long':
+            break;
+    }
+}
+</script>
+
+<script>
+function action_queue()
+{
+    setTimeout("anim_attack('m1','e1','close')", 0);
+    setTimeout("anim_attack('m2','e2','close')", 2900);
+    setTimeout("anim_attack('m3','e3','close')", 5800);
+}
+
+function anim_attack(mId,eId,way)
+{
+    var x = document.getElementById(eId).getBoundingClientRect().left - document.getElementById(mId).getBoundingClientRect().left;
+    var y = document.getElementById(eId).getBoundingClientRect().top - document.getElementById(mId).getBoundingClientRect().top;
+
+    $('#'+mId)
+        .velocity({
+            translateZ: 0,
+            translateX: x,
+            translateY: y + 80,
+        },{
+            duration: 500,
+            begin: function(){
+                $('#'+"progress_"+mId).css("visibility","hidden");
+            }
+        })
+
+        .velocity({
+            translateZ: 0,
+            rotateZ: "6deg",
+        },{
+            duration: 300,
+            complete: function(){
+                playAnim('skill',eId,300,0,way);
+                playAudio('fire_explosion', 'mp3');
+                $('#'+eId)
+                    .velocity({
+                        translateZ: 0,
+                        scaleX: 0.9,
+                        scaleY: 0.9,
+                    })
+                    .velocity("reverse");
+                $('#'+"progress_"+eId+" div").css("width","80%");
+            },
+        })
+
+        .velocity({
+            translateZ: 0,
+            rotateZ: "-12deg",
+        },{
+            complete: function(){
+                playAnim('skill_num',eId,300,400,way);
+            }
+        })
+
+        .velocity({
+            translateZ: 0,
+            translateX: 0,
+            translateY: 0,
+            rotateZ: "0deg",
+        },{
+            duration: 500,
+            begin: function(){
+
+            },
+            complete: function(){
+                $('#'+"progress_"+mId).css("visibility","visible");
+            }
+        })
+    ;
+}
+</script>
+
+</div>
+</body>
+</html>
