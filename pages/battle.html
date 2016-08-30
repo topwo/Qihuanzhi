@@ -17,13 +17,11 @@
 <body>
 <div id="battle">
 
-<div id="skill" class="skill">
-    <img src="../img/skill/attack.png">
-</div>
+<img id="skill" class="skill">
 
-<span id="skill_num" class="skill_num">
-    -2332
-</span>
+<div id="skill_num" class="skill_num">
+    3244
+</div>
 
 <center>
 
@@ -119,56 +117,134 @@ window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequest
 
 <script>
 // 组件库
-function playAudio(filename, format)
+function playAudio(filename,format,delay)
 {
-    var audio5js = new Audio5js
-    ({
-        ready: function ()
-        {
-            this.load('../mp3/' + filename + '.' + format);
-            this.play();
-            // Audio 播放状态监控
-            // this.on('play', function () { console.log('play'); }, this);
-            // this.on('pause', function () { console.log('pause'); }, this);
-            this.on('ended', function () { this.destroy(); }, this);
-        }
-    });
+    setTimeout(function(){
+        var audio5js = new Audio5js
+        ({
+            ready: function ()
+            {
+                this.load('../mp3/' + filename + '.' + format);
+                this.play();
+                // Audio 播放状态监控
+                // this.on('play', function () { console.log('play'); }, this);
+                // this.on('pause', function () { console.log('pause'); }, this);
+                this.on('ended', function () { this.destroy(); }, this);
+            }
+        });
+    }, delay)
 }
 
-function playAnim(div,eId,time,duringTime,way)
+function anim_num(eId,time,duringTime)
 {
-    switch (way) {
-        case 'close':
-            var x = document.getElementById(eId).getBoundingClientRect().left;
-            var y = document.getElementById(eId).getBoundingClientRect().top;
+    var x = document.getElementById(eId).getBoundingClientRect().left;
+    var y = document.getElementById(eId).getBoundingClientRect().top;
 
-            $("#"+div).css('left', x);
-            $("#"+div).css('top', y);
-            $("#"+div).css('z-index', 2);
+    $("#skill_num").css('left', x);
+    $("#skill_num").css('top', y);
+    $("#skill_num").css('z-index', 2);
 
-            $("#"+div)
-                .velocity("fadeIn", { duration: time })
-                .velocity({
-                    translateZ: 0,
-                }, { duration: duringTime })
-                .velocity("fadeOut", { duration: time });
-            break;
+    $("#skill_num")
+        .velocity("fadeIn", { duration: time })
+        .velocity({
+            translateZ: 0,
+        }, { duration: duringTime })
+        .velocity("fadeOut", { duration: time })
+    ;
+}
 
-        case 'long':
-            break;
-    }
+function anim_long_attack(mId,eId,time,img)
+{
+    var m_x = document.getElementById(mId).getBoundingClientRect().left;
+    var m_y = document.getElementById(mId).getBoundingClientRect().top;
+    var x = document.getElementById(eId).getBoundingClientRect().left - document.getElementById(mId).getBoundingClientRect().left;
+    var y = document.getElementById(eId).getBoundingClientRect().top - document.getElementById(mId).getBoundingClientRect().top;
+
+    $("#skill").css('left', m_x);
+    $("#skill").css('top', m_y);
+    $("#skill").css('z-index', 2);
+    $("#skill").attr('src', '../img/skill/'+img+'.png');
+
+    $("#skill")
+        .velocity("fadeIn", { duration: time/2 })
+        .velocity({
+            translateZ: 0,
+            translateX: x,
+            translateY: y,
+        }, {
+            duration: time,
+            complete: function(){
+                playAudio('attack','mp3',0);
+                anim_num(eId,200,200);
+                $(this).velocity("fadeOut", { duration: time/2 })
+                       .velocity({translateX: 0,translateY: 0}, 1);  // 重置动画初始位置
+            }
+        })
+    ;
+}
+
+function anim_close_attack(mId,eId,time,img)
+{
+    var x = document.getElementById(eId).getBoundingClientRect().left;
+    var y = document.getElementById(eId).getBoundingClientRect().top;
+
+    $("#skill").css('left', x);
+    $("#skill").css('top', y);
+    $("#skill").css('z-index', 2);
+    $("#skill").attr('src', '../img/skill/'+img+'.png');
+
+    $("#skill")
+        .velocity("fadeIn", {
+            duration: time,
+            begin: function(){
+                playAudio('attack','mp3',0);
+            },
+        })
+
+        .velocity({
+            translateZ: 0,
+        }, {
+            duration: time/4,
+            complete: function(){
+                anim_num(eId,200,400);
+            },
+        })
+
+        .velocity("fadeOut", { duration: time });
 }
 </script>
 
 <script>
 function action_queue()
 {
-    setTimeout("anim_attack('m1','e1','close')", 0);
-    setTimeout("anim_attack('m2','e2','close')", 2900);
-    setTimeout("anim_attack('m3','e3','close')", 5800);
+    setTimeout("event_long_attack('m1','e3','fire')", 0);
+    setTimeout("event_close_attack('m3','e2','attack')", 2000);
 }
 
-function anim_attack(mId,eId,way)
+function event_long_attack(mId,eId,img)
+{
+    $('#'+mId)
+        .velocity({
+            translateZ: 0,
+            translateY: -10,
+        },{
+            duration: 200,
+            begin: function(){
+                $('#'+"progress_"+mId).css("visibility","hidden");
+            },
+            complete: function(){
+                anim_long_attack(mId,eId,400,img);
+            }
+        })
+        .velocity("reverse",{
+            complete: function(){
+                $('#'+"progress_"+mId).css("visibility","visible");
+            }
+        })
+    ;
+}
+
+function event_close_attack(mId,eId,img)
 {
     var x = document.getElementById(eId).getBoundingClientRect().left - document.getElementById(mId).getBoundingClientRect().left;
     var y = document.getElementById(eId).getBoundingClientRect().top - document.getElementById(mId).getBoundingClientRect().top;
@@ -191,8 +267,7 @@ function anim_attack(mId,eId,way)
         },{
             duration: 300,
             complete: function(){
-                playAnim('skill',eId,300,0,way);
-                playAudio('fire_explosion', 'mp3');
+                anim_close_attack(mId,eId,400,img);
                 $('#'+eId)
                     .velocity({
                         translateZ: 0,
@@ -209,7 +284,7 @@ function anim_attack(mId,eId,way)
             rotateZ: "-12deg",
         },{
             complete: function(){
-                playAnim('skill_num',eId,300,400,way);
+                //playAnim('skill_num',eId,300,400,'num');
             }
         })
 
@@ -220,9 +295,6 @@ function anim_attack(mId,eId,way)
             rotateZ: "0deg",
         },{
             duration: 500,
-            begin: function(){
-
-            },
             complete: function(){
                 $('#'+"progress_"+mId).css("visibility","visible");
             }

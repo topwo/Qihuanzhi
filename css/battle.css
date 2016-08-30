@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'farrington-7b-qiqiregular';
+  src: url("../font/num-webfont.woff2") format("woff2"), url("../font/num-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 #battle {
   background-image: url(../img/scene/battle.png);
   background-size: cover;
@@ -6,13 +12,13 @@
   width: 100%;
 }
 #battle .skill_num {
-  margin-top: 30px;
-  margin-left: -8px;
+  font-family: 'farrington-7b-qiqiregular';
+  margin-top: 38px;
+  margin-left: 12px;
   position: absolute;
   opacity: 0;
-  display: inline-block;
   color: red;
-  font-size: 48px;
+  font-size: 40px;
   font-weight: 900;
   -webkit-text-stroke: 1px #363232;
   background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(222, 151, 31, 0.77)), to(rgba(255, 0, 0, 0.7)));
