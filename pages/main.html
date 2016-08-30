@@ -1,0 +1,61 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="../css/global.css" rel="stylesheet">
+    <link href="../css/normalize.css" rel="stylesheet">
+    <script src="../js/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+<div id="main">
+
+<script>
+window.onload = function()
+{
+    $('#iframe').css( 'margin-top', $('#nav-top-img').height() );
+    $('#iframe').css( 'height', $(window).height() - $('.nav-top').height() - $('.nav-bottom').height());
+};
+</script>
+
+<script>
+// 获取用户游戏数据
+htmlobj=$.ajax({url:"../php/calc.php",async:false});
+var obj = jQuery.parseJSON(htmlobj.responseText);
+</script>
+
+<div class="nav-top">
+    <img id='nav-top-img' src="../img/ui/top.jpg" style="width:100%;">
+    <div id='nav-top-gold'><script>document.write(obj.gold);</script></div>
+</div>
+
+<iframe id='iframe' src="../pages/list.html"></iframe>
+
+<div class="nav-bottom">
+    <img src="../img/ui/home.jpg" class="nav-img">
+    <img src="../img/ui/instance.jpg" class="nav-img">
+    <img id="go_battle" src="../img/ui/battle.jpg" class="nav-img">
+    <img src="../img/ui/shop.jpg" class="nav-img">
+    <img src="../img/ui/friend.jpg" class="nav-img">
+    <img src="../img/ui/help.jpg" class="nav-img">
+</div>
+
+<script>
+$(document).ready(function(){
+    $("#go_battle").click(function(){
+        location.href = "../pages/battle.php";
+
+        /*
+        $(".nav-top").load("../pages/battle.html",function(responseTxt,statusTxt,xhr){
+          if(statusTxt=="success")
+            document.write(responseTxt);
+          if(statusTxt=="error")
+            alert("Error: "+xhr.status+": "+xhr.statusText);
+        });
+        */
+    });
+});
+</script>
+
+</div>
+</body>
+</html>

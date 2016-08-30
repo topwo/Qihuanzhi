@@ -8,13 +8,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="../css/normalize.css" rel="stylesheet">
-    <link href="../css/battle.css" rel="stylesheet">
+    <link href="../css/global.css" rel="stylesheet">
     <script src="../js/jquery-3.1.0.min.js"></script>
     <script src="../js/velocity.min.js"></script>
     <script src="../js/audio.js"></script>
     <script src="../js/check.js"></script>
 </head>
 <body>
+
+<script>
+// 获取用户游戏数据
+htmlobj=$.ajax({url:"../php/calc.php",async:false});
+var obj = jQuery.parseJSON(htmlobj.responseText);
+</script>
+
 <div id="battle">
 
 <img id="skill" class="skill">
@@ -26,11 +33,17 @@
 <center>
 
 <div class="top">
-      <div style="margin-top: 16px;">
-          <img onclick="action_queue()" class="card" id='e4' src="../img/c1.png">
-          <img class="card" id='e5' src="../img/c2.png">
-          <img class="card" id='e6' src="../img/c3.png">
-      </div>
+    <div style="margin-top: 16px;">
+        <script>
+            document.write('<img onclick="action_queue()" class="card" id="e4" src="../img/card/'+obj.card1+'.png">');
+        </script>
+        <script>
+            document.write('<img class="card" id="e5" src="../img/card/'+obj.card2+'.png">');
+        </script>
+        <script>
+            document.write('<img class="card" id="e6" src="../img/card/'+obj.card3+'.png">');
+        </script>
+    </div>
       <div style="margin-top: 3px;">
           <div class="div_progress" id="progress_e4">
               <div class="progress" style="width: 10%;"></div>
@@ -43,9 +56,9 @@
           </div>
       </div>
       <div style="margin-top: 12px;">
-          <img class="card" id='e1' src="../img/c4.png">
-          <img class="card" id='e2' src="../img/c5.png">
-          <img class="card" id='e3' src="../img/c6.png">
+          <img class="card" id='e1' src="../img/card/4.png">
+          <img class="card" id='e2' src="../img/card/5.png">
+          <img class="card" id='e3' src="../img/card/6.png">
       </div>
       <div style="margin-top: 3px;">
           <div class="div_progress" id="progress_e1">
@@ -62,9 +75,15 @@
 
 <div class="bottom">
       <div style="margin-bottom: 3px;">
-          <img class="card" id='m1' src="../img/c1.png">
-          <img class="card" id='m2' src="../img/c2.png">
-          <img class="card" id='m3' src="../img/c3.png">
+          <script>
+              document.write('<img onclick="action_queue()" class="card" id="m1" src="../img/card/'+obj.card1+'.png">');
+          </script>
+          <script>
+              document.write('<img class="card" id="m2" src="../img/card/'+obj.card2+'.png">');
+          </script>
+          <script>
+              document.write('<img class="card" id="m3" src="../img/card/'+obj.card3+'.png">');
+          </script>
       </div>
       <div style="margin-bottom: 12px;">
           <div class="div_progress" id="progress_m1">
@@ -78,9 +97,15 @@
           </div>
       </div>
       <div style="margin-bottom: 3px;">
-          <img class="card" id='m4' src="../img/c4.png">
-          <img class="card" id='m5' src="../img/c5.png">
-          <img class="card" id='m6' src="../img/c6.png">
+          <script>
+              document.write('<img onclick="action_queue()" class="card" id="m4" src="../img/card/'+obj.card4+'.png">');
+          </script>
+          <script>
+              document.write('<img class="card" id="m5" src="../img/card/'+obj.card5+'.png">');
+          </script>
+          <script>
+              document.write('<img class="card" id="m6" src="../img/card/'+obj.card6+'.png">');
+          </script>
       </div>
       <div style="margin-bottom: 16px;">
           <div class="div_progress" id="progress_m4">
@@ -94,7 +119,6 @@
           </div>
       </div>
 </div>
-
 
 </center>
 
@@ -176,6 +200,16 @@ function anim_long_attack(mId,eId,time,img)
             complete: function(){
                 playAudio('attack','mp3',0);
                 anim_num(eId,200,200);
+
+                // 被攻击动画
+                $('#'+eId)
+                    .velocity({
+                        translateZ: 0,
+                        scaleX: 0.9,
+                        scaleY: 0.9,
+                    })
+                    .velocity("reverse");
+
                 $(this).velocity("fadeOut", { duration: time/2 })
                        .velocity({translateX: 0,translateY: 0}, 1);  // 重置动画初始位置
             }
@@ -198,6 +232,15 @@ function anim_close_attack(mId,eId,time,img)
             duration: time,
             begin: function(){
                 playAudio('attack','mp3',0);
+
+                // 被攻击动画
+                $('#'+eId)
+                    .velocity({
+                        translateZ: 0,
+                        scaleX: 0.9,
+                        scaleY: 0.9,
+                    })
+                    .velocity("reverse");
             },
         })
 
@@ -210,7 +253,12 @@ function anim_close_attack(mId,eId,time,img)
             },
         })
 
-        .velocity("fadeOut", { duration: time });
+        .velocity("fadeOut", {
+            duration: time,
+            complete: function(){
+
+            },
+        });
 }
 </script>
 
@@ -219,6 +267,7 @@ function action_queue()
 {
     setTimeout("event_long_attack('m1','e3','fire')", 0);
     setTimeout("event_close_attack('m3','e2','attack')", 2000);
+    setTimeout("location.href = '../pages/main.html';", 5000);
 }
 
 function event_long_attack(mId,eId,img)
@@ -268,13 +317,6 @@ function event_close_attack(mId,eId,img)
             duration: 300,
             complete: function(){
                 anim_close_attack(mId,eId,400,img);
-                $('#'+eId)
-                    .velocity({
-                        translateZ: 0,
-                        scaleX: 0.9,
-                        scaleY: 0.9,
-                    })
-                    .velocity("reverse");
                 $('#'+"progress_"+eId+" div").css("width","80%");
             },
         })
@@ -284,7 +326,7 @@ function event_close_attack(mId,eId,img)
             rotateZ: "-12deg",
         },{
             complete: function(){
-                //playAnim('skill_num',eId,300,400,'num');
+
             }
         })
 

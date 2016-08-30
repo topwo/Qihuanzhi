@@ -1,14 +1,69 @@
 @charset "utf-8";
 
-@font-face {
+@font-face
+{
     font-family: 'farrington-7b-qiqiregular';
     src: url('../font/num-webfont.woff2') format('woff2'),
          url('../font/num-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
 
+#list
+{
+    background-image: url(../img/ui/bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .list-img
+    {
+        padding-top: 2px;
+        padding-bottom: 2px;
+        width: 100%;
+    }
+}
+
+#main
+{
+    #iframe
+    {
+        border: 0px;
+        width: 100%;
+    }
+
+    .nav-bottom
+    {
+        position: fixed;
+        bottom: 0;
+    }
+
+    .nav-top
+    {
+        position: absolute;
+        top: 0;
+    }
+
+    #nav-top-gold
+    {
+        letter-spacing: 0.8px;
+        font-family: Arial;
+        position: absolute;
+        font-size: 13px;
+        font-weight: 400;
+        top: 26px;
+        left: 205px;
+        color: white;
+        width: 80px;
+        color: yellow;
+        text-align: center;
+    }
+
+    .nav-img
+    {
+        float: left;
+        width: (100%/6);
+    }
+}
 
 #battle
 {
