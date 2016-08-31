@@ -9,23 +9,54 @@
 <body>
 <div id="main">
 
+<!--
+<div id="div_announcement">
+    <div id="div_announcement_alpha"></div>
+    <iframe id='iframe_announcement' src="../pages/announcement.html"></iframe>
+</div>
+-->
+<script>
+
+
+// 获取用户游戏数据
+//var data_user = jQuery.parseJSON($.ajax({url:"../php/redis_get_user.php",async:false}).responseText);
+//var data_system = jQuery.parseJSON($.ajax({url:"../php/redis_get_system.php",async:false}).responseText);
+</script>
+
 <script>
 window.onload = function()
 {
     $('#iframe').css( 'margin-top', $('#nav-top-img').height() );
     $('#iframe').css( 'height', $(window).height() - $('.nav-top').height() - $('.nav-bottom').height());
 };
-</script>
 
-<script>
-// 获取用户游戏数据
-htmlobj=$.ajax({url:"../php/calc.php",async:false});
-var obj = jQuery.parseJSON(htmlobj.responseText);
+$(document).ready(function()
+{
+    getData('user','nav-top-gold','gold');
+    getData('user','nav-top-fushi','fushi');
+
+    // 隐藏公告
+    $("#div_announcement_alpha").click(function(){
+        $('#div_announcement').hide();
+    });
+});
+
+function getData(model,div,name)
+{
+    var worker = new Worker("../js/work.js");
+    worker.postMessage( model );
+    worker.onmessage = function(evt)
+    {
+        var result = jQuery.parseJSON( evt.data );
+        $("#"+div).text( result[name] );
+    };
+}
 </script>
 
 <div class="nav-top">
     <img id='nav-top-img' src="../img/ui/top.jpg" style="width:100%;">
-    <div id='nav-top-gold'><script>document.write(obj.gold);</script></div>
+    <div id='nav-top-gold'></div>
+    <div id='nav-top-fushi'>22233</div>
 </div>
 
 <iframe id='iframe' src="../pages/list.html"></iframe>
@@ -40,20 +71,9 @@ var obj = jQuery.parseJSON(htmlobj.responseText);
 </div>
 
 <script>
-$(document).ready(function(){
     $("#go_battle").click(function(){
         location.href = "../pages/battle.php";
-
-        /*
-        $(".nav-top").load("../pages/battle.html",function(responseTxt,statusTxt,xhr){
-          if(statusTxt=="success")
-            document.write(responseTxt);
-          if(statusTxt=="error")
-            alert("Error: "+xhr.status+": "+xhr.statusText);
-        });
-        */
     });
-});
 </script>
 
 </div>
