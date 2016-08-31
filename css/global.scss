@@ -15,7 +15,44 @@
     width: 100%;
     background-image: url(../img/ui/announcement.png);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 100%;
+
+    .announcement_list
+    {
+        position: relative;
+        height: 66%;
+        width: 84%;
+        left: 8%;
+        overflow-y: visible;
+        overflow-x: hidden;
+
+        .div_menu
+        {
+            .title
+            {
+                display: block;
+                margin-bottom: 6px;
+                padding: 14px 0 14px 0;
+                width: 100%;
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 900;
+                color: #006e7b;
+                background-color: #cbb987;
+                text-indent: 8pt;
+                border-radius: 8px;
+            }
+
+            .content
+            {
+                padding: 8px;
+                margin-top: -10px;
+                margin-bottom: 10px;
+                word-wrap:break-word;
+                background-color: #cbb987;
+            }
+        }
+    }
 }
 
 #list
@@ -58,9 +95,6 @@
 
 #index
 {
-
-    position: relative;
-
     #div_announcement
     {
         #div_announcement_alpha
@@ -75,12 +109,12 @@
 
         #iframe_announcement
         {
-            width: 90%;
-            height: 70%;
-            margin: 25% 5% 5% 5%;
+            width: 88%;
+            height: 74%;
+            top: 13%;
+            left: 6%;
             position: absolute;
             z-index: 10;
-            opacity: 1;
             border: 0px;
             opacity: 1;
         }
@@ -88,8 +122,12 @@
 
     #iframe
     {
+        position: fixed;
         border: 0px;
         width: 100%;
+        height: 74%;
+        top: 17%;
+        overflow-y: scroll;
     }
 
     .nav-bottom

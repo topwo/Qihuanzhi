@@ -1,7 +1,13 @@
+<!DOCTYPE>
+<html>
+<head>
 <link href="../css/normalize.css" rel="stylesheet">
 <link href="../css/global.css" rel="stylesheet">
 <script src="../js/jquery-3.1.0.min.js"></script>
+<script src="../framework/tran/work.js"></script>
+</head>
 
+<body>
 <div id="main">
     <img src="../img/ui/main.png" class="row">
     <img src="../img/avater/1.png" class="card" style="left: calc(0% + 10px)" />
@@ -17,7 +23,19 @@
 </div>
 
 <script>
-$("#go_main_hero").click(function(){
-    location.href = "../pages/main.hero.html";
+$("#go_main_hero").click(function()
+{
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.open("GET","../pages/main.hero.html",true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            $('#iframe').html(xmlhttp.responseText);
+        }
+    }
 });
 </script>
+</body>
+</head>

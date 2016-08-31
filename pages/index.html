@@ -5,40 +5,27 @@
     <link href="../css/global.css" rel="stylesheet">
     <link href="../css/normalize.css" rel="stylesheet">
     <script src="../js/jquery-3.1.0.min.js"></script>
+    <script src="../framework/tran/work.js"></script>
+    <script src="../framework/security/cookie.js"></script>
 </head>
 <body>
 <div id="index">
 
-<!--
 <div id="div_announcement">
     <div id="div_announcement_alpha"></div>
     <iframe id='iframe_announcement' src="../pages/announcement.html"></iframe>
 </div>
--->
-<script>
-
-
-// 获取用户游戏数据
-//var data_user = jQuery.parseJSON($.ajax({url:"../php/redis_get_user.php",async:false}).responseText);
-//var data_system = jQuery.parseJSON($.ajax({url:"../php/redis_get_system.php",async:false}).responseText);
-</script>
 
 <script>
-window.onload = function()
-{
-    $('#iframe').css( 'margin-top', $('#nav-top-img').height() - 1 );
-    $('#iframe').css( 'height', $(window).height() - $('.nav-top').height() - $('.nav-bottom').height() + 1 );
-};
+//$("#div_announcement").css('display', 'block')
+getCookie('announcement_onoff') == null ? console.log('a') : console.log('b');
 
-$(document).ready(function()
-{
-    getData('user','nav-top-gold','gold');
-    getData('user','nav-top-fushi','fushi');
+getData('user','nav-top-gold','gold');
+getData('user','nav-top-fushi','fushi');
 
-    // 隐藏公告
-    $("#div_announcement_alpha").click(function(){
-        $('#div_announcement').hide();
-    });
+// 隐藏公告
+$("#div_announcement_alpha").click(function(){
+    $('#div_announcement').hide();
 });
 
 function getData(model,div,name)
@@ -64,10 +51,10 @@ function getData(model,div,name)
     </div>
 </div>
 
-<iframe id='iframe' src="../pages/main.html"></iframe>
+<div id='iframe'></div>
 
 <div class="nav-bottom">
-    <img id="go_home" src="../img/ui/home.jpg" class="nav-img">
+    <img id="go_index" src="../img/ui/home.jpg" class="nav-img">
     <img src="../img/ui/instance.jpg" class="nav-img">
     <img id="go_battle" src="../img/ui/battle.jpg" class="nav-img">
     <img src="../img/ui/shop.jpg" class="nav-img">
@@ -77,11 +64,38 @@ function getData(model,div,name)
 
 <script>
     $("#go_battle").click(function(){
-        location.href = "../pages/battle.php";
+        //getHtml('../pages/battle.php');
+        //document.write($.ajax({url:"../pages/battle.php",async:false}).responseText);
     });
-    $("#go_home").click(function(){
-        location.href = "../pages/index.html";
+    $("#go_index").click(function(){
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("GET","../pages/main.html",true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                $('#iframe').html(xmlhttp.responseText);
+            }
+        }
     });
+
+    window.onload=function()
+    {
+        // 已经看过公告
+        setCookie('announcement_onoff','1');
+
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("GET","../pages/main.html",true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                $('#iframe').html(xmlhttp.responseText);
+            }
+        }
+    }
 </script>
 
 </div>
