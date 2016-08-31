@@ -18,7 +18,7 @@
 
 <script>
 // 获取用户游戏数据
-htmlobj=$.ajax({url:"../php/calc.php",async:false});
+htmlobj=$.ajax({url:"../php/redis_get_user.php",async:false});
 var obj = jQuery.parseJSON(htmlobj.responseText);
 </script>
 
@@ -267,7 +267,7 @@ function action_queue()
 {
     setTimeout("event_long_attack('m1','e3','fire')", 0);
     setTimeout("event_close_attack('m3','e2','attack')", 2000);
-    setTimeout("location.href = '../pages/main.html';", 5000);
+    setTimeout("location.href = '../pages/index.html';", 5000);
 }
 
 function event_long_attack(mId,eId,img)

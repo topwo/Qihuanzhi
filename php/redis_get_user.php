@@ -11,6 +11,7 @@ $data = $redis->hmget('user_id_1', array(
     'card6',
 
     'gold',
+    'fushi',
 ));
 echo json_encode($data);
 ?>

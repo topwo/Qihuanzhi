@@ -1,0 +1,89 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="../css/global.css" rel="stylesheet">
+    <link href="../css/normalize.css" rel="stylesheet">
+    <script src="../js/jquery-3.1.0.min.js"></script>
+</head>
+<body>
+<div id="index">
+
+<!--
+<div id="div_announcement">
+    <div id="div_announcement_alpha"></div>
+    <iframe id='iframe_announcement' src="../pages/announcement.html"></iframe>
+</div>
+-->
+<script>
+
+
+// 获取用户游戏数据
+//var data_user = jQuery.parseJSON($.ajax({url:"../php/redis_get_user.php",async:false}).responseText);
+//var data_system = jQuery.parseJSON($.ajax({url:"../php/redis_get_system.php",async:false}).responseText);
+</script>
+
+<script>
+window.onload = function()
+{
+    $('#iframe').css( 'margin-top', $('#nav-top-img').height() - 1 );
+    $('#iframe').css( 'height', $(window).height() - $('.nav-top').height() - $('.nav-bottom').height() + 1 );
+};
+
+$(document).ready(function()
+{
+    getData('user','nav-top-gold','gold');
+    getData('user','nav-top-fushi','fushi');
+
+    // 隐藏公告
+    $("#div_announcement_alpha").click(function(){
+        $('#div_announcement').hide();
+    });
+});
+
+function getData(model,div,name)
+{
+    var worker = new Worker("../js/work.js");
+    worker.postMessage( model );
+    worker.onmessage = function(evt)
+    {
+        var result = jQuery.parseJSON( evt.data );
+        $("#"+div).text( result[name] );
+    };
+}
+</script>
+
+<div class="nav-top">
+    <img id='nav-top-img' src="../img/ui/top.jpg" style="width:100%;">
+    <div id='nav-top-gold'></div>
+    <div id='nav-top-fushi'></div>
+    <div id='nav-top-div'>
+        <img id='nav-top-icon' src="../img/ui/mail.png">
+        <img id='nav-top-icon' src="../img/ui/gift.png">
+        <img id='nav-top-icon' src="../img/ui/message.png">
+    </div>
+</div>
+
+<iframe id='iframe' src="../pages/main.html"></iframe>
+
+<div class="nav-bottom">
+    <img id="go_home" src="../img/ui/home.jpg" class="nav-img">
+    <img src="../img/ui/instance.jpg" class="nav-img">
+    <img id="go_battle" src="../img/ui/battle.jpg" class="nav-img">
+    <img src="../img/ui/shop.jpg" class="nav-img">
+    <img src="../img/ui/friend.jpg" class="nav-img">
+    <img src="../img/ui/help.jpg" class="nav-img">
+</div>
+
+<script>
+    $("#go_battle").click(function(){
+        location.href = "../pages/battle.php";
+    });
+    $("#go_home").click(function(){
+        location.href = "../pages/index.html";
+    });
+</script>
+
+</div>
+</body>
+</html>

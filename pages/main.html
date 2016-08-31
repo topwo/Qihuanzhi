@@ -1,81 +1,23 @@
-<!DOCTYPE>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link href="../css/global.css" rel="stylesheet">
-    <link href="../css/normalize.css" rel="stylesheet">
-    <script src="../js/jquery-3.1.0.min.js"></script>
-</head>
-<body>
+<link href="../css/normalize.css" rel="stylesheet">
+<link href="../css/global.css" rel="stylesheet">
+<script src="../js/jquery-3.1.0.min.js"></script>
+
 <div id="main">
+    <img src="../img/ui/main.png" class="row">
+    <img src="../img/avater/1.png" class="card" style="left: calc(0% + 10px)" />
+    <img src="../img/avater/1.png" class="card" style="left: calc(20% + 8px)" />
+    <img src="../img/avater/1.png" class="card" style="left: calc(40% + 6px)" />
+    <img src="../img/avater/1.png" class="card" style="left: calc(60% + 5px)" />
+    <img src="../img/avater/1.png" class="card" style="left: calc(80% + 2px)" />
 
-<!--
-<div id="div_announcement">
-    <div id="div_announcement_alpha"></div>
-    <iframe id='iframe_announcement' src="../pages/announcement.html"></iframe>
+    <img id="go_main_hero" src="../img/ui/menu_hero.png" class="card" style="left: calc(0% + 18px);top:160px;" />
+    <img src="../img/ui/menu_strengthen.png" class="card" style="left: calc(25% + 8px);top:160px;" />
+    <img src="../img/ui/menu_bag.png" class="card" style="left: calc(50% + 8px);top:160px;" />
+    <img src="../img/ui/menu_eqiupment.png" class="card" style="left: calc(75% + 8px);top:160px;" />
 </div>
--->
-<script>
-
-
-// 获取用户游戏数据
-//var data_user = jQuery.parseJSON($.ajax({url:"../php/redis_get_user.php",async:false}).responseText);
-//var data_system = jQuery.parseJSON($.ajax({url:"../php/redis_get_system.php",async:false}).responseText);
-</script>
 
 <script>
-window.onload = function()
-{
-    $('#iframe').css( 'margin-top', $('#nav-top-img').height() );
-    $('#iframe').css( 'height', $(window).height() - $('.nav-top').height() - $('.nav-bottom').height());
-};
-
-$(document).ready(function()
-{
-    getData('user','nav-top-gold','gold');
-    getData('user','nav-top-fushi','fushi');
-
-    // 隐藏公告
-    $("#div_announcement_alpha").click(function(){
-        $('#div_announcement').hide();
-    });
+$("#go_main_hero").click(function(){
+    location.href = "../pages/main.hero.html";
 });
-
-function getData(model,div,name)
-{
-    var worker = new Worker("../js/work.js");
-    worker.postMessage( model );
-    worker.onmessage = function(evt)
-    {
-        var result = jQuery.parseJSON( evt.data );
-        $("#"+div).text( result[name] );
-    };
-}
 </script>
-
-<div class="nav-top">
-    <img id='nav-top-img' src="../img/ui/top.jpg" style="width:100%;">
-    <div id='nav-top-gold'></div>
-    <div id='nav-top-fushi'>22233</div>
-</div>
-
-<iframe id='iframe' src="../pages/list.html"></iframe>
-
-<div class="nav-bottom">
-    <img src="../img/ui/home.jpg" class="nav-img">
-    <img src="../img/ui/instance.jpg" class="nav-img">
-    <img id="go_battle" src="../img/ui/battle.jpg" class="nav-img">
-    <img src="../img/ui/shop.jpg" class="nav-img">
-    <img src="../img/ui/friend.jpg" class="nav-img">
-    <img src="../img/ui/help.jpg" class="nav-img">
-</div>
-
-<script>
-    $("#go_battle").click(function(){
-        location.href = "../pages/battle.php";
-    });
-</script>
-
-</div>
-</body>
-</html>
