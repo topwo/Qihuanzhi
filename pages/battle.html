@@ -17,9 +17,31 @@
 <body>
 
 <script>
-// 获取用户游戏数据
-htmlobj=$.ajax({url:"../php/redis_get_user.php",async:false});
-var obj = jQuery.parseJSON(htmlobj.responseText);
+getDataArray('user','battle.cards');
+
+function getDataArray(model,name)
+{
+    var worker = new Worker("../js/work.js");
+    worker.postMessage( model );
+    worker.onmessage = function(evt)
+    {
+        var result = jQuery.parseJSON( evt.data );
+
+        var array = result[name].split(',');
+        var i = 1;
+        for (v of array)
+        {
+            $("#e"+i).attr("src", "../img/card/1.png" );
+            i++;
+        }
+        i=1;
+        for (v of array)
+        {
+            $("#m"+i).attr("src", "../img/card/1.png" );
+            i++;
+        }
+    };
+}
 </script>
 
 <div id="battle">
@@ -34,15 +56,9 @@ var obj = jQuery.parseJSON(htmlobj.responseText);
 
 <div class="top">
     <div style="margin-top: 16px;">
-        <script>
-            document.write('<img onclick="action_queue()" class="card" id="e4" src="../img/card/'+obj.card1+'.png">');
-        </script>
-        <script>
-            document.write('<img class="card" id="e5" src="../img/card/'+obj.card2+'.png">');
-        </script>
-        <script>
-            document.write('<img class="card" id="e6" src="../img/card/'+obj.card3+'.png">');
-        </script>
+        <img onclick="action_queue()" class="card" id="e4">
+        <img class="card" id='e5'>
+        <img class="card" id='e6'>
     </div>
       <div style="margin-top: 3px;">
           <div class="div_progress" id="progress_e4">
@@ -56,9 +72,9 @@ var obj = jQuery.parseJSON(htmlobj.responseText);
           </div>
       </div>
       <div style="margin-top: 12px;">
-          <img class="card" id='e1' src="../img/card/4.png">
-          <img class="card" id='e2' src="../img/card/5.png">
-          <img class="card" id='e3' src="../img/card/6.png">
+          <img class="card" id='e1'>
+          <img class="card" id='e2'>
+          <img class="card" id='e3'>
       </div>
       <div style="margin-top: 3px;">
           <div class="div_progress" id="progress_e1">
@@ -75,15 +91,9 @@ var obj = jQuery.parseJSON(htmlobj.responseText);
 
 <div class="bottom">
       <div style="margin-bottom: 3px;">
-          <script>
-              document.write('<img onclick="action_queue()" class="card" id="m1" src="../img/card/'+obj.card1+'.png">');
-          </script>
-          <script>
-              document.write('<img class="card" id="m2" src="../img/card/'+obj.card2+'.png">');
-          </script>
-          <script>
-              document.write('<img class="card" id="m3" src="../img/card/'+obj.card3+'.png">');
-          </script>
+          <img class="card" id="m1">
+          <img class="card" id="m2">
+          <img class="card" id="m3">
       </div>
       <div style="margin-bottom: 12px;">
           <div class="div_progress" id="progress_m1">
@@ -97,15 +107,9 @@ var obj = jQuery.parseJSON(htmlobj.responseText);
           </div>
       </div>
       <div style="margin-bottom: 3px;">
-          <script>
-              document.write('<img onclick="action_queue()" class="card" id="m4" src="../img/card/'+obj.card4+'.png">');
-          </script>
-          <script>
-              document.write('<img class="card" id="m5" src="../img/card/'+obj.card5+'.png">');
-          </script>
-          <script>
-              document.write('<img class="card" id="m6" src="../img/card/'+obj.card6+'.png">');
-          </script>
+          <img class="card" id="m4">
+          <img class="card" id="m5">
+          <img class="card" id="m6">
       </div>
       <div style="margin-bottom: 16px;">
           <div class="div_progress" id="progress_m4">
@@ -267,7 +271,7 @@ function action_queue()
 {
     setTimeout("event_long_attack('m1','e3','fire')", 0);
     setTimeout("event_close_attack('m3','e2','attack')", 2000);
-    setTimeout("location.href = '../pages/index.html';", 5000);
+    setTimeout("history.back(-1)", 5000);
 }
 
 function event_long_attack(mId,eId,img)

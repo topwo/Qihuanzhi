@@ -1,27 +1,31 @@
-<!DOCTYPE>
-<html>
-<head>
-<link href="../css/normalize.css" rel="stylesheet">
-<link href="../css/global.css" rel="stylesheet">
-</head>
-
-<body>
 <div id="list">
-    <img src="../img/ui/list.jpg" class="list-img" style="padding-top:6px;">
-    <img src="../img/ui/list.jpg" class="list-img">
-    <img src="../img/ui/list.jpg" class="list-img">
-    <img src="../img/ui/list.jpg" class="list-img">
-    <img src="../img/ui/list.jpg" class="list-img">
-    <img src="../img/ui/list.jpg" class="list-img">
-    <img src="../img/ui/list.jpg" class="list-img">
-    <img src="../img/ui/list.jpg" class="list-img">
-    <img src="../img/ui/list.jpg" class="list-img">
-    <img src="../img/ui/list.jpg" class="list-img">
-    <img src="../img/ui/list.jpg" class="list-img">
-    <img src="../img/ui/list.jpg" class="list-img">
-    <img src="../img/ui/list.jpg" class="list-img">
-    <img src="../img/ui/list.jpg" class="list-img">
-    <img src="../img/ui/list.jpg" class="list-img" style="padding-bottom:6px;">
+
 </div>
-</body>
-</html>
+
+<script>
+$('#nav-top-div').html(
+    '<img id="nav-top-button" src="../img/ui/button_hero.png">'
+);
+
+getDataArray('user','nav-top-fushi','cards');
+
+function getDataArray(model,div,name)
+{
+    var worker = new Worker("../js/work.js");
+    worker.postMessage( model );
+    worker.onmessage = function(evt)
+    {
+        var result = jQuery.parseJSON( evt.data );
+
+        var array = result[name].split(',');
+        for (v of array)
+        {
+            $("#list").append(
+                '<div class="row">\
+                    <img src="../img/avater/'+v+'.png" class="list-img">\
+                </div>'
+            );
+        }
+    };
+}
+</script>

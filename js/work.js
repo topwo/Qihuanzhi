@@ -4,7 +4,7 @@ onmessage =function (evt)
     var result;
 
     var xmlhttp=new XMLHttpRequest();
-    xmlhttp.open( "GET", "../php/redis_get_" + parameter + ".php", false );
+    xmlhttp.open( "GET", "../php/redis.get." + parameter + ".php", false );
     xmlhttp.send();
     result = xmlhttp.responseText;
 
