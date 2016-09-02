@@ -1,0 +1,248 @@
+@charset "utf-8";
+
+#card-detail
+{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.9);
+
+    .row-skill
+    {
+        background-image: url(../img/ui/cards.info.bg.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+
+        position: relative;
+        width: calc(88% - 4px);
+        color: white;
+        left: 6%;
+        right: 6%;
+        padding: 2px;
+        margin-top: 41%;
+        margin-bottom: 10px;
+
+        .row-skill-block
+        {
+            padding: 8px;
+            height: 61%;
+            margin-top: 1%;
+
+            .row-skill-block-title
+            {
+                display: block;
+                margin-bottom: 4px;
+
+                img
+                {
+                    width: 10px;
+                    margin-left: 2px;
+                }
+
+                small
+                {
+                    letter-spacing: 1px;
+                }
+
+                span
+                {
+                    color: #ffe914;
+                }
+            }
+
+            .row-skill-block-content
+            {
+                display: block;
+                background-color: rgb(51,46,42);
+                border-radius: 4px;
+                padding: 2px 6px 2px 6px;
+                margin-bottom: 8px;
+
+                .br
+                {
+                    display: block;
+                    margin-bottom: 6px;
+                }
+            }
+        }
+    }
+
+    .row-info
+    {
+        position: relative;
+        width: 100%;
+        color: white;
+
+        .row-info-left
+        {
+            float: left;
+            width: 50%;
+            margin-top: -30px; /* 图片尺寸修正 */
+
+            img
+            {
+                width: 100%;
+            }
+        }
+
+        .row-info-right
+        {
+            float: left;
+            width: 46%;
+            color: white;
+            margin-left: -4%; /* 图片尺寸修正 */
+
+            span
+            {
+                display: block;
+                margin-bottom: 3px;
+
+                b
+                {
+                    letter-spacing: 1px;
+                }
+
+                img
+                {
+                    width: 16px;
+                }
+            }
+        }
+    }
+
+    .row-collect
+    {
+        background-image: url(../img/ui/cards.info.bg.png);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+
+        position: relative;
+        width: calc(88% - 4px);
+        color: white;
+        left: 6%;
+        right: 6%;
+        padding: 8px;
+        margin-bottom: 10px;
+
+        .row-collect-title
+        {
+            display: block;
+            margin-bottom: 4px;
+
+            img
+            {
+                width: 10px;
+                margin-left: 2px;
+            }
+
+            small
+            {
+                letter-spacing: 1px;
+            }
+
+            span
+            {
+                color: #ffe914;
+            }
+        }
+
+        .row-collect-img
+        {
+            display: block;
+            margin: 4px 0 4px 0;
+            width: 100%;
+
+            img
+            {
+                width: 45px;
+            }
+        }
+
+        .row-collect-content
+        {
+            display: block;
+            background-color: rgb(51,46,42);
+            border-radius: 4px;
+            padding: 2px 6px 2px 6px;
+            margin-bottom: 8px;
+
+            .row-collect-content-br
+            {
+                display: block;
+                margin-bottom: 6px;
+            }
+        }
+    }
+
+    .row-close
+    {
+        position: absolute;
+        width: 100%;
+        top: 90%;
+        text-align: center;
+
+        img
+        {
+            width: 150px;
+        }
+    }
+
+    .row-pagination
+    {
+        position: absolute;
+        width: 100%;
+        top: 87%;
+        text-align: center;
+        color: white;
+
+        .swiper-pagination
+        {
+            width: 100%;
+        }
+    }
+
+    .row-title
+    {
+        position: fixed;
+        width: 100%;
+        margin-top: 24px;
+        margin-bottom: 10px;
+
+        .row-title-img
+        {
+            background-image: url(../img/ui/cards.info.name.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            width: 158px;
+            height: 36px;
+            margin-left: calc(50% - 79px);
+        }
+
+        .row-title-name
+        {
+            font-size: 16px;
+            color: yellow;
+            font-weight: 400;
+            width: 100%;
+            height: 36px;
+            line-height: 36px;
+            text-align: center;
+        }
+    }
+
+    .swiper-container
+    {
+        top: 12%;
+        height: 73%;
+    }
+
+    #single
+    {
+        overflow: hidden;
+    }
+    #multi
+    {
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+}
