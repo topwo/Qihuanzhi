@@ -25,7 +25,7 @@
 }
 #card-detail .row-skill .row-skill-block .row-skill-block-title {
   display: block;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 #card-detail .row-skill .row-skill-block .row-skill-block-title img {
   width: 10px;
@@ -41,8 +41,8 @@
   display: block;
   background-color: #332e2a;
   border-radius: 4px;
-  padding: 2px 6px 2px 6px;
-  margin-bottom: 8px;
+  padding: 4px 6px 4px 6px;
+  margin-bottom: 6px;
 }
 #card-detail .row-skill .row-skill-block .row-skill-block-content .br {
   display: block;
@@ -117,7 +117,7 @@
   display: block;
   background-color: #332e2a;
   border-radius: 4px;
-  padding: 2px 6px 2px 6px;
+  padding: 4px 6px 4px 6px;
   margin-bottom: 8px;
 }
 #card-detail .row-collect .row-collect-content .row-collect-content-br {
