@@ -13,7 +13,7 @@
         background-image: url(../img/ui/list_hero.png);
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        margin-bottom: 4px;
+        margin-bottom: 2px;
         width: 100%;
         height: 64px;
         color: white;
@@ -21,39 +21,43 @@
         .main-hero-list-lv
         {
             font-size: 14px;
-            position: fixed;
-            right: 26px;
-            margin-top: 12px;
-            text-align: left;
+            display: block;
+            position: relative;
+            text-align: right;
+            padding: 10px 15px 0 0;
             color: rgb(255, 252, 0);
         }
 
         .main-hero-list-title
         {
+            font-size: 14px;
             display: block;
             position: relative;
-            left: 28px;
-            top: 11px;
+            text-align: left;
+            margin: -13px 0 0 88px;
         }
 
         .main-hero-list-content
         {
+            font-size: 14px;
+            display: inline-block;
             position: relative;
-            top: 18px;
-            left: 26px;
             text-align: left;
+            margin: 9px 0 0 26px;
         }
 
         .main-hero-list-content2
         {
-            position: fixed;
-            left: 172px;
-            margin-top: 18px;
+            font-size: 14px;
+            display: inline-block;
+            position: relative;
             text-align: left;
+            margin: 9px 0 0 47px;
         }
 
         .main-hero-list-img
         {
+            margin-top: 1px;
             float: left;
             position: relative;
             width: 58px;

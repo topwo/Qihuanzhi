@@ -44,12 +44,15 @@ $("#div_announcement_alpha").click(function(){
 </script>
 
 <div class="nav-top">
-    <img id='nav-top-img' src="../img/ui/top.jpg" style="width:100%;">
+    <img id='nav-top-img' src="../img/ui/top.png" style="width:100%;">
     <div id='nav-top-gold'><?php echo $user['gold'] ?></div>
     <div id='nav-top-fushi'><?php echo $user['fushi'] ?></div>
-    <div id='nav-top-div'></div>
+    <div id='nav-top-div'>
+        <img id="nav-top-button" src="../img/ui/button_hero.png">
+    </div>
 </div>
 
+<div id='iframe-liubai'></div>
 <div id='iframe'></div>
 
 <div class="nav-bottom">
@@ -91,9 +94,7 @@ $("#div_announcement_alpha").click(function(){
             {
                 $('#iframe').html(xmlhttp.responseText);
                 $('#nav-top-div').html(
-                    '<img id="nav-top-icon" src="../img/ui/mail.png">\
-                    <img id="nav-top-icon" src="../img/ui/gift.png">\
-                    <img id="nav-top-icon" src="../img/ui/message.png">'
+                    '<img id="nav-top-button" src="../img/ui/button_hero.png">'
                 );
             }
         }
@@ -111,9 +112,7 @@ $("#div_announcement_alpha").click(function(){
         {
             $('#iframe').html(xmlhttp.responseText);
             $('#nav-top-div').html(
-                '<img id="nav-top-icon" src="../img/ui/mail.png">\
-                <img id="nav-top-icon" src="../img/ui/gift.png">\
-                <img id="nav-top-icon" src="../img/ui/message.png">'
+                '<img id="nav-top-button" src="../img/ui/button_hero.png">'
             );
         }
     }

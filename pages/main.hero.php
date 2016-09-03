@@ -38,6 +38,7 @@ function card(key,value)
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
             $('body').append(xmlhttp.responseText);
+            $("#nav-top-div").css('display','none');
         }
     }
 }
