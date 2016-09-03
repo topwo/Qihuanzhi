@@ -12,7 +12,7 @@ $cards_coefficient = getDataArray('cards.coefficient');
     <?php
     for ($i=1; $i <= count($user_cards); $i++)
     {
-        echo '<div class="main-hero-list"><img class="main-hero-list-img" src="../img/avater/',$i,'.png" />';
+        echo '<div class="main-hero-list" onclick="card(\'my\',\'',$i,'\')"><img class="main-hero-list-img" src="../img/avater/',$i,'.png" />';
         echo '<span class="main-hero-list-lv">等级 <b>',$user_cards[$i],'</b></span>';
         echo '<span class="main-hero-list-title">',ex($cards[$i])[9],'</span>';
         echo '<span class="main-hero-list-content">',$user_cards[$i] * ex($cards_coefficient[$i])[0] + ex($cards[$i])[3],'</span>';
@@ -27,4 +27,18 @@ $cards_coefficient = getDataArray('cards.coefficient');
 $('#nav-top-div').html(
     '<img id="nav-top-button" src="../img/ui/button_hero.png">'
 );
+
+function card(key,value)
+{
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.open("GET","../pages/cards.detail.php?key="+key+"&value="+value,true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            $('body').append(xmlhttp.responseText);
+        }
+    }
+}
 </script>

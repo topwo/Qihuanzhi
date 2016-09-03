@@ -184,6 +184,7 @@
   background-size: cover;
   position: relative;
   padding: 12px;
+  overflow: hidden;
 }
 #main-hero .main-hero-list {
   position: relative;
