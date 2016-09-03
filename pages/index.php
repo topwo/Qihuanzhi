@@ -1,3 +1,11 @@
+<?php
+// echo $_GET['key']; 请求操作，all
+require_once '../php/redis.php';
+require_once '../php/array.php';
+
+$user = getDataArray('user.1');
+?>
+
 <!DOCTYPE>
 <html>
 <head>
@@ -29,30 +37,16 @@
 //$("#div_announcement").css('display', 'block')
 getCookie('announcement_onoff') == null ? console.log('a') : console.log('b');
 
-getData('user','nav-top-gold','gold');
-getData('user','nav-top-fushi','fushi');
-
 // 隐藏公告
 $("#div_announcement_alpha").click(function(){
     $('#div_announcement').hide();
 });
-
-function getData(model,div,name)
-{
-    var worker = new Worker("../js/work.js");
-    worker.postMessage( model );
-    worker.onmessage = function(evt)
-    {
-        var result = jQuery.parseJSON( evt.data );
-        $("#"+div).text( result[name] );
-    };
-}
 </script>
 
 <div class="nav-top">
     <img id='nav-top-img' src="../img/ui/top.jpg" style="width:100%;">
-    <div id='nav-top-gold'></div>
-    <div id='nav-top-fushi'></div>
+    <div id='nav-top-gold'><?php echo $user['gold'] ?></div>
+    <div id='nav-top-fushi'><?php echo $user['fushi'] ?></div>
     <div id='nav-top-div'></div>
 </div>
 
@@ -89,7 +83,7 @@ function getData(model,div,name)
 
     $("#go_index").click(function(){
         var xmlhttp=new XMLHttpRequest();
-        xmlhttp.open("GET","../pages/main.html",true);
+        xmlhttp.open("GET","../pages/main.php",true);
         xmlhttp.send();
         xmlhttp.onreadystatechange=function()
         {
@@ -109,7 +103,7 @@ function getData(model,div,name)
     setCookie('announcement_onoff','1');
 
     var xmlhttp=new XMLHttpRequest();
-    xmlhttp.open("GET","../pages/main.html",true);
+    xmlhttp.open("GET","../pages/main.php",true);
     xmlhttp.send();
     xmlhttp.onreadystatechange=function()
     {
