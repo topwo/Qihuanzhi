@@ -57,7 +57,7 @@ $("#div_announcement_alpha").click(function(){
 
 <div class="nav-bottom">
     <img id="go_index" src="../img/ui/home.jpg" class="nav-img">
-    <img src="../img/ui/instance.jpg" class="nav-img">
+    <img id="go_instance" src="../img/ui/instance.jpg" class="nav-img">
     <img id="go_battle" src="../img/ui/battle.jpg" class="nav-img">
     <img src="../img/ui/shop.jpg" class="nav-img">
     <img src="../img/ui/friend.jpg" class="nav-img">
@@ -74,6 +74,20 @@ $("#div_announcement_alpha").click(function(){
     {
         var xmlhttp=new XMLHttpRequest();
         xmlhttp.open("GET","../pages/help.cards.php",true);
+        xmlhttp.send();
+        xmlhttp.onreadystatechange=function()
+        {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+            {
+                $('#iframe').html(xmlhttp.responseText);
+            }
+        }
+    });
+
+    $("#go_instance").click(function()
+    {
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.open("GET","../pages/instance.php",true);
         xmlhttp.send();
         xmlhttp.onreadystatechange=function()
         {
