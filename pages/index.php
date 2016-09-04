@@ -48,7 +48,7 @@ $("#div_announcement_alpha").click(function(){
     <div id='nav-top-gold'><?php echo $user['gold'] ?></div>
     <div id='nav-top-fushi'><?php echo $user['fushi'] ?></div>
     <div id='nav-top-div'>
-        <img id="nav-top-button" src="../img/ui/button_hero.png">
+        <img class="nav-top-button" src="../img/ui/button_hero.png">
     </div>
 </div>
 
@@ -108,7 +108,7 @@ $("#div_announcement_alpha").click(function(){
             {
                 $('#iframe').html(xmlhttp.responseText);
                 $('#nav-top-div').html(
-                    '<img id="nav-top-button" src="../img/ui/button_hero.png">'
+                    '<img class="nav-top-button" src="../img/ui/button_hero.png">'
                 );
             }
         }
@@ -126,7 +126,7 @@ $("#div_announcement_alpha").click(function(){
         {
             $('#iframe').html(xmlhttp.responseText);
             $('#nav-top-div').html(
-                '<img id="nav-top-button" src="../img/ui/button_hero.png">'
+                '<img class="nav-top-button" src="../img/ui/button_hero.png">'
             );
         }
     }

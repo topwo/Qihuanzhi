@@ -25,7 +25,7 @@ $cards_coefficient = getDataArray('cards.coefficient');
 <script>
 // 导航
 $('#nav-top-div').html(
-    '<img id="nav-top-button" src="../img/ui/button_hero.png">'
+    '<img class="nav-top-button" src="../img/ui/button_hero.png">'
 );
 
 function card(key,value)

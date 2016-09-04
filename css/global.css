@@ -180,7 +180,7 @@
 
 #main-hero {
   position: relative;
-  padding: 12px;
+  padding: 6px 12px 10px 12px;
   overflow: hidden;
 }
 #main-hero .main-hero-list {
@@ -254,7 +254,7 @@
   position: fixed;
   border: 0px;
   width: 100%;
-  height: 6%;
+  height: calc(6% + 3px);
   top: 12%;
 }
 #index #iframe {
@@ -309,22 +309,23 @@
   width: 52px;
   margin: 11% 14px 7px 4px;
 }
-#index #nav-top-div #nav-top-button {
+#index #nav-top-div .nav-top-button {
   float: left;
   width: 72px;
-  margin: 10% 0px 0px 8px;
+  margin: 10% 0px 0px 1px;
 }
 #index .nav-img {
   float: left;
   width: 16.66667%;
 }
 
-#instance {
+.instance {
   position: relative;
-  padding: 12px;
+  padding: 6px 12px 10px 12px;
   overflow: hidden;
+  display: none;
 }
-#instance .instance-list {
+.instance .instance-list {
   position: relative;
   background-image: url(../img/ui/instance.png);
   background-repeat: no-repeat;
@@ -333,13 +334,13 @@
   width: 100%;
   height: 64px;
 }
-#instance .instance-list .instance-list-img {
+.instance .instance-list .instance-list-img {
   margin-top: 1px;
   float: left;
   position: relative;
   width: 58px;
 }
-#instance .instance-list .instance-list-status {
+.instance .instance-list .instance-list-status {
   font-size: 14px;
   font-weight: 600;
   position: relative;
@@ -348,7 +349,15 @@
   text-shadow: 1px 1px 1px #000;
   color: #81d8e1;
 }
-#instance .instance-list .instance-list-title {
+.instance .instance-list .instance-list-clear {
+  font-size: 9pt;
+  position: relative;
+  top: 6px;
+  padding: 0 0 0 20px;
+  text-shadow: 1px 1px 1px #000;
+  color: yellow;
+}
+.instance .instance-list .instance-list-title {
   font-size: 18px;
   display: block;
   top: 12px;
@@ -357,14 +366,42 @@
   text-shadow: 3px 2px 2px #000;
   color: white;
 }
-#instance .instance-list .instance-list-star {
+.instance .instance-list .instance-list-class, .instance .instance-list .instance-list-star, .instance .instance-list .instance-list-power {
+  font-size: 14px;
   display: inline;
   font-weight: 600;
   position: relative;
   top: -30px;
-  left: 84%;
+  left: 78%;
   text-shadow: 1px 1px 1px #000;
+}
+.instance .instance-list .instance-list-star {
   color: yellow;
+}
+.instance .instance-list .instance-list-power {
+  color: lightgreen;
+}
+
+#help-cards {
+  padding: 6px 12px 10px 12px;
+}
+#help-cards .card {
+  width: 18%;
+  margin: 1%;
+}
+
+#battle-ready {
+  position: relative;
+  padding: 6px 12px 10px 12px;
+  overflow: hidden;
+}
+#battle-ready .row {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 6px;
+}
+#battle-ready .row .row-img {
+  width: 30%;
 }
 
 body {
@@ -379,14 +416,6 @@ body {
   font-weight: normal;
   font-style: normal;
 }
-#help-cards {
-  margin: 5%;
-}
-#help-cards .card {
-  width: 18%;
-  margin: 1%;
-}
-
 #announcement {
   height: 100%;
   width: 100%;

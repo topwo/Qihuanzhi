@@ -1,0 +1,18 @@
+#battle-ready
+{
+    position: relative;
+    padding: 6px 12px 10px 12px;
+    overflow: hidden;
+
+    .row
+    {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 6px;
+
+        .row-img
+        {
+            width: 30%;
+        }
+    }
+}

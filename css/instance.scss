@@ -1,8 +1,9 @@
-#instance
+.instance
 {
     position: relative;
-    padding: 12px;
+    padding: 6px 12px 10px 12px;
     overflow: hidden;
+    display: none;
 
     .instance-list
     {
@@ -33,6 +34,16 @@
             color: #81d8e1;
         }
 
+        .instance-list-clear
+        {
+            font-size: 9pt;
+            position: relative;
+            top: 6px;
+            padding: 0 0 0 20px;
+            text-shadow: 1px 1px 1px #000;
+            color: yellow;
+        }
+
         .instance-list-title
         {
             font-size: 18px;
@@ -44,15 +55,25 @@
             color: white;
         }
 
-        .instance-list-star
+        .instance-list-class
         {
+            font-size: 14px;
             display: inline;
             font-weight: 600;
             position: relative;
             top: -30px;
-            left: 84%;
+            left: 78%;
             text-shadow: 1px 1px 1px #000;
+        }
+        .instance-list-star
+        {
+            @extend .instance-list-class;
             color: yellow;
+        }
+        .instance-list-power
+        {
+            @extend .instance-list-class;
+            color: lightgreen;
         }
     }
 }

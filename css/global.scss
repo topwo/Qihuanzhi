@@ -4,6 +4,8 @@
 @import "main-hero";
 @import "index";
 @import "instance";
+@import "help-cards";
+@import "battle-ready";
 
 body
 {
@@ -19,17 +21,6 @@ body
          url('../font/num-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
-
-#help-cards
-{
-    margin: 5%;
-
-    .card
-    {
-        width: 18%;
-        margin: 1%;
-    }
 }
 
 #announcement

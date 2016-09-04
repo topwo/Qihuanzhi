@@ -139,6 +139,5 @@ $("#hide_this").click(function()
 {
     $("#nav-top-div").css('display','block');
     $('#card-detail').remove();
-
 });
 </script>

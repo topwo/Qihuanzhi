@@ -6,7 +6,7 @@
 getData('data','nav-top-fushi','cards.count');
 
 $('#nav-top-div').html(
-    '<img id="nav-top-button" src="../img/ui/button_hero.png">'
+    '<img class="nav-top-button" src="../img/ui/button_hero.png">'
 );
 
 function card(key,value)
