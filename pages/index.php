@@ -35,7 +35,7 @@ $user = getDataArray('user.1');
 
 <script>
 //$("#div_announcement").css('display', 'block')
-getCookie('announcement_onoff') == null ? console.log('a') : console.log('b');
+//getCookie('announcement_onoff') == null ? console.log('a') : console.log('b');
 
 // 隐藏公告
 $("#div_announcement_alpha").click(function(){

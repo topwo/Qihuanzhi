@@ -410,6 +410,28 @@
   position: relative;
   padding: 6px 12px 10px 12px;
   overflow: hidden;
+  height: calc(100% - 16px);
+}
+#battle-ready #div_change_position {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: none;
+  text-align: center;
+}
+#battle-ready .div_num_position {
+  display: inline-block;
+  font-size: 72pt;
+  text-align: center;
+  width: 30%;
+  height: 128px;
+  line-height: 128px;
+  margin-top: 20px;
+  background-color: #333;
+  color: white;
 }
 #battle-ready .row-teamSkill {
   text-align: center;
