@@ -4,6 +4,22 @@
   overflow: hidden;
   display: none;
 }
+.instance .instance-listInfo {
+  position: relative;
+  width: 100%;
+  font-size: 16px;
+  color: white;
+  margin: 24px 0 6px 0;
+  text-align: center;
+}
+.instance .instance-listInfo .instance-list-description {
+  font-size: 14px;
+  display: block;
+  position: relative;
+  padding: 8px;
+  color: white;
+  text-align: left;
+}
 .instance .instance-list {
   position: relative;
   background-image: url(../img/ui/instance.png);
@@ -20,8 +36,8 @@
   width: 58px;
 }
 .instance .instance-list .instance-list-status {
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 900;
   position: relative;
   top: 8px;
   padding: 0 0 0 26px;
@@ -37,7 +53,7 @@
   color: yellow;
 }
 .instance .instance-list .instance-list-title {
-  font-size: 18px;
+  font-size: 16px;
   display: block;
   top: 12px;
   position: relative;

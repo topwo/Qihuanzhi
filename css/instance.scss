@@ -5,6 +5,26 @@
     overflow: hidden;
     display: none;
 
+    .instance-listInfo
+    {
+        position: relative;
+        width: 100%;
+        font-size: 16px;
+        color: white;
+        margin: 24px 0 6px 0;
+        text-align: center;
+
+        .instance-list-description
+        {
+            font-size: 14px;
+            display: block;
+            position: relative;
+            padding: 8px;
+            color: white;
+            text-align: left;
+        }
+    }
+
     .instance-list
     {
         position: relative;
@@ -25,8 +45,8 @@
 
         .instance-list-status
         {
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 900;
             position: relative;
             top: 8px;
             padding: 0 0 0 26px;
@@ -46,7 +66,7 @@
 
         .instance-list-title
         {
-            font-size: 18px;
+            font-size: 16px;
             display: block;
             top: 12px;
             position: relative;

@@ -125,6 +125,14 @@ require_once '../php/array.php';
         <span class="instance-list-title">1-1 大囧龟</span>
         <span class="instance-list-power">体力：6</span>
     </div>
+    <div class="instance-listInfo">
+        溶洞
+        <span class="instance-list-description">
+            &emsp;&emsp;迷失在冬雪梦境中的小软们每天最喜欢的活动就是内裤大赛，
+            每当有漂亮内裤展示时，它们就纷纷模拟人声大喊：“好！”。由于
+            发声器官比较独特的缘故，听起来却像是哀嚎一般！
+        </span>
+    </div>
 </div>
 
 <script>
