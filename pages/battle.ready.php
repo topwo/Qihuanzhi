@@ -28,6 +28,20 @@ function chang_position_end(id)
     tmp1 = 0;
     tmp2 = 0;
     tmp3 = 0;
+
+    var tmp4 = '';
+    for (var i = 0; i < 6; i++) {
+        tmp4 = tmp4 + $("#img"+i+" img").attr('src').substring(12,13) + ',';
+    }
+    tmp4 = tmp4.substring(0,tmp4.length-1);
+
+    // 传输数据给服务器
+    $.ajax({
+        type: "POST",
+        url: "../php/redis.php",
+        data: 'op=set&db=user.1&key=team1.cards&value='+tmp4,
+        contentType: "application/x-www-form-urlencoded"
+    });
 }
 </script>
 
