@@ -5,6 +5,7 @@ $redis->connect('127.0.0.1',6379);
 // 清空数据库
 $redis->flushall();
 
+// 可能 废弃数据
 $redis->hmset('user_id_1', array(
     'battle.cards' => '1,2,3,4,5,6',
     'cards' => '1,2',
@@ -16,6 +17,8 @@ $redis->hmset('user_id_1', array(
 $redis->hmset('user.1', array(
     // 首页卡牌
     'main.cards' => '1,2,1,2,1',
+    // 出战卡牌 - 团队1
+    'team1.cards' => '1,1,-1,-1,2,2',
     // 拥有卡牌
     'cards' => '1,2,3',
 
