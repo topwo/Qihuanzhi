@@ -1,0 +1,135 @@
+{
+    "cards.coefficient":
+    [
+        {
+            "cardID": "1",
+            "hp.coe": "166",
+            "att.coe": "33"
+        },
+        {
+            "cardID": "2",
+            "hp.coe": "56",
+            "att.coe": "128"
+        },
+        {
+            "cardID": "3",
+            "hp.coe": "126",
+            "att.coe": "79"
+        }
+    ],
+
+    "cards.talent":
+    [
+        {
+            "id": "1",
+            "name": "初级防护天赋",
+            "desc": "微量+韧性，少量+物抗",
+            "up.physics;": "0.02",
+            "up.toughness": "0.04"
+        },
+        {
+            "id": "2",
+            "name": "中级防护天赋",
+            "desc": "少量+韧性，中量+物抗",
+            "up.physics;": "0.04",
+            "up.toughness": "0.08"
+        },
+        {
+            "id": "3",
+            "name": "高级防护天赋",
+            "desc": "中量+韧性，大量+物抗",
+            "up.physics;": "0.08",
+            "up.toughness": "0.16"
+        },
+        {
+            "id": "4",
+            "name": "究级防护天赋",
+            "desc": "大量+韧性，巨量+物抗",
+            "up.physics;": "0.16",
+            "up.toughness": "0.32"
+        }
+    ],
+
+    "cards.collect":
+    [
+        {
+            "id": "1",
+            "name": "牛皮的厚度",
+            "effect": "【+12% 物抗】 【+6% 韧性】",
+            "desc": "牛皮的厚度总是不可想象！",
+            "up.physics;": "0.12",
+            "up.toughness": "0.06",
+            "relateID": "%1%,%2%"
+        },
+        {
+            "id": "2",
+            "name": "牛皮的厚度",
+            "effect": "【+24% 物抗】 【+12% 韧性】",
+            "desc": "牛皮的厚度总是不可想象！",
+            "up.physics;": "0.12",
+            "up.toughness": "0.06",
+            "relateID": "%2%,%3%"
+        },
+        {
+            "id": "3",
+            "name": "牛皮的厚度",
+            "effect": "【+35% 物抗】 【+18% 韧性】",
+            "desc": "牛皮的厚度总是不可想象！",
+            "up.physics;": "0.12",
+            "up.toughness": "0.06",
+            "relateID": "%1%,%2%,%3%"
+        }
+    ],
+
+    "cards.level":
+    [
+        {
+            "level": "1",
+            "name": "朴素",
+            "maxlv": "10",
+            "lead": "4",
+            "maxSkill": "3",
+            "color": "白色"
+        },
+        {
+            "level": "2",
+            "name": "普通",
+            "maxlv": "30",
+            "lead": "8",
+            "maxSkill": "3",
+            "color": "绿色"
+        },
+        {
+            "level": "3",
+            "name": "珍贵",
+            "maxlv": "60",
+            "lead": "16",
+            "maxSkill": "6",
+            "color": "蓝色"
+        },
+        {
+            "level": "4",
+            "name": "稀有",
+            "maxlv": "75",
+            "lead": "32",
+            "maxSkill": "6",
+            "color": "紫色"
+        },
+        {
+            "level": "5",
+            "name": "史诗",
+            "maxlv": "90",
+            "lead": "64",
+            "maxSkill": "10",
+            "color": "橙色"
+        },
+        {
+            "level": "6",
+            "name": "传说",
+            "maxlv": "100",
+            "lead": "128",
+            "maxSkill": "15",
+            "color": "红色"
+        }
+    ]
+}

@@ -1,10 +1,19 @@
-<div id="help-cards">
+<?php
+require_once '../php/json.php';
 
+$count = get_dataArray_count('cards','cards');
+?>
+
+<div id="help-cards">
+    <?php
+    for ($i=1; $i <= $count; $i++)
+    {
+        echo '<img onclick="card(\'','all\',',$i,')" src="../img/avater/',$i,'.png" class="card" />';
+    }
+    ?>
 </div>
 
 <script>
-getData('data','nav-top-fushi','cards.count');
-
 $('#nav-top-div').html(
     '<img class="nav-top-button" src="../img/ui/button_hero.png">'
 );
@@ -22,20 +31,5 @@ function card(key,value)
             $("#nav-top-div").css('display','none');
         }
     }
-}
-
-function getData(model,div,name)
-{
-    var worker = new Worker("../js/work.js");
-    worker.postMessage( model );
-    worker.onmessage = function(evt)
-    {
-        var result = jQuery.parseJSON( evt.data );
-        for (var i = 1; i <= result['cards.count']; i++) {
-            $("#help-cards").append(
-                '<img onclick="card(\''+'all\','+i+')" src="../img/avater/'+i+'.png" class="card"></img>'
-            );
-        }
-    };
 }
 </script>

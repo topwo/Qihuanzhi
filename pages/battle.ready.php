@@ -16,7 +16,8 @@ function chang_position_start(id)
 {
     tmp1 = $("#img"+id).attr('id').substring(3,4); // 顺序
     tmp2 = $("#img"+id+" img").attr('src').substring(12,13); // 图片
-    $("#div_change_position").css('display','block');
+    if (tmp2 != 0)
+    { $("#div_change_position").css('display','block'); }
 }
 
 function chang_position_end(id)
