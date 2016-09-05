@@ -1,3 +1,12 @@
+<?php
+// echo $_GET['key']; 请求操作，all
+require_once '../php/redis.php';
+require_once '../php/json.php';
+
+$u_info = redis_get_DataArray('1.info');
+
+?>
+
 <!DOCTYPE>
 <html>
 <head>
@@ -16,33 +25,7 @@
 </head>
 <body>
 
-<script>
-getDataArray('user','battle.cards');
 
-function getDataArray(model,name)
-{
-    var worker = new Worker("../js/work.js");
-    worker.postMessage( model );
-    worker.onmessage = function(evt)
-    {
-        var result = jQuery.parseJSON( evt.data );
-
-        var array = result[name].split(',');
-        var i = 1;
-        for (v of array)
-        {
-            $("#e"+i).attr("src", "../img/card/1.png" );
-            i++;
-        }
-        i=1;
-        for (v of array)
-        {
-            $("#m"+i).attr("src", "../img/card/1.png" );
-            i++;
-        }
-    };
-}
-</script>
 
 <div id="battle">
 
@@ -56,9 +39,9 @@ function getDataArray(model,name)
 
 <div class="top">
     <div style="margin-top: 16px;">
-        <img onclick="action_queue()" class="card" id="e4">
-        <img class="card" id='e5'>
-        <img class="card" id='e6'>
+        <img onclick="action_queue()" class="card" id="e4" src="../img/card/<?php echo ex($u_info['team1.cards'])[0] ?>.png">
+        <img class="card" id='e5' src="../img/card/<?php echo ex($u_info['team1.cards'])[1] ?>.png">
+        <img class="card" id='e6' src="../img/card/<?php echo ex($u_info['team1.cards'])[2] ?>.png">
     </div>
       <div style="margin-top: 3px;">
           <div class="div_progress" id="progress_e4">
@@ -72,9 +55,9 @@ function getDataArray(model,name)
           </div>
       </div>
       <div style="margin-top: 12px;">
-          <img class="card" id='e1'>
-          <img class="card" id='e2'>
-          <img class="card" id='e3'>
+          <img class="card" id='e1' src="../img/card/<?php echo ex($u_info['team1.cards'])[3] ?>.png">
+          <img class="card" id='e2' src="../img/card/<?php echo ex($u_info['team1.cards'])[4] ?>.png">
+          <img class="card" id='e3' src="../img/card/<?php echo ex($u_info['team1.cards'])[5] ?>.png">
       </div>
       <div style="margin-top: 3px;">
           <div class="div_progress" id="progress_e1">
@@ -91,34 +74,34 @@ function getDataArray(model,name)
 
 <div class="bottom">
       <div style="margin-bottom: 3px;">
-          <img class="card" id="m1">
-          <img class="card" id="m2">
-          <img class="card" id="m3">
+          <img class="card" id="m1" src="../img/card/<?php echo ex($u_info['team1.cards'])[0] ?>.png">
+          <img class="card" id="m2" src="../img/card/<?php echo ex($u_info['team1.cards'])[1] ?>.png">
+          <img class="card" id="m3" src="../img/card/<?php echo ex($u_info['team1.cards'])[2] ?>.png">
       </div>
       <div style="margin-bottom: 12px;">
-          <div class="div_progress" id="progress_m1">
+          <div class="div_progress" id="progress_m1" style="<?php echo ex($u_info['team1.cards'])[0]==0?'visibility:hidden;':'' ?>">
               <div class="progress" style="width: 10%;"></div>
           </div>
-          <div class="div_progress" id="progress_m2">
+          <div class="div_progress" id="progress_m2" style="<?php echo ex($u_info['team1.cards'])[1]==0?'visibility:hidden;':'' ?>">
               <div class="progress" style="width: 90%;"></div>
           </div>
-          <div class="div_progress" id="progress_m3">
+          <div class="div_progress" id="progress_m3" style="<?php echo ex($u_info['team1.cards'])[2]==0?'visibility:hidden;':'' ?>">
               <div class="progress" style="width: 50%;"></div>
           </div>
       </div>
       <div style="margin-bottom: 3px;">
-          <img class="card" id="m4">
-          <img class="card" id="m5">
-          <img class="card" id="m6">
+          <img class="card" id="m4" src="../img/card/<?php echo ex($u_info['team1.cards'])[3] ?>.png">
+          <img class="card" id="m5" src="../img/card/<?php echo ex($u_info['team1.cards'])[4] ?>.png">
+          <img class="card" id="m6" src="../img/card/<?php echo ex($u_info['team1.cards'])[5] ?>.png">
       </div>
       <div style="margin-bottom: 16px;">
-          <div class="div_progress" id="progress_m4">
+          <div class="div_progress" id="progress_m4" style="<?php echo ex($u_info['team1.cards'])[3]==0?'visibility:hidden;':'' ?>">
               <div class="progress" style="width: 10%;"></div>
           </div>
-          <div class="div_progress" id="progress_m5">
+          <div class="div_progress" id="progress_m5" style="<?php echo ex($u_info['team1.cards'])[4]==0?'visibility:hidden;':'' ?>">
               <div class="progress" style="width: 90%;"></div>
           </div>
-          <div class="div_progress" id="progress_m6">
+          <div class="div_progress" id="progress_m6" style="<?php echo ex($u_info['team1.cards'])[5]==0?'visibility:hidden;':'' ?>">
               <div class="progress" style="width: 50%;"></div>
           </div>
       </div>

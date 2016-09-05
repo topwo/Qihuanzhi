@@ -13,18 +13,7 @@ $redis->hmset('user_id_1', array(
     'fushi' => '727',
 ));
 
-// 用户设定
-$redis->hmset('user.1', array(
-    // 首页卡牌
-    'main.cards' => '1,2,1,2,1',
-    // 出战卡牌 - 团队1
-    'team1.cards' => '1,0,0,0,0,2',
-    // 拥有卡牌
-    'cards' => '1,2,3',
 
-    'gold' => '139677323',
-    'fushi' => '727',
-));
 // 用户拥有卡牌设定
 
 
@@ -43,49 +32,32 @@ $redis->hmset('data', array(
 
 
 
-// 系统设定
-$redis->hmset('system', array(
-    'announcement' => '
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    ',
+
+
+
+
+
+
+
+// 用户设定
+$redis->hmset('1.info', array(
+    // 首页卡牌
+    'main.cards' => '1,2,1,2,1',
+    // 出战卡牌 - 团队1
+    'team1.cards' => '1,0,0,0,0,2',
+    // 拥有卡牌
+    'cards' => '1,2,3',
+
+    'gold' => '139677323',
+    'fushi' => '727',
 ));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 $redis->hmset('1.cards', array(
     // key=卡牌编号，value=卡牌数据
     // [0]等级
     '1' => '30',
-    '2' => '22',
-    '3' => '3',
+    '2' => '30',
+    '3' => '30',
 ));
 
 echo 'ok';

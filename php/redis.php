@@ -2,11 +2,11 @@
 
 if (@$_POST['op'] == 'set')
 {
-    echo setData($_POST['db'],$_POST['key'],$_POST['value']);
+    echo redis_set_Data($_POST['db'],$_POST['key'],$_POST['value']);
 }
 
 
-function setData($db,$key,$value)
+function redis_set_Data($db,$key,$value)
 {
     $redis = new Redis();
     $redis->connect('127.0.0.1',6379);
@@ -22,6 +22,15 @@ function getData($db,$name)
 
     $data = $redis->hget($db, $name);
     return explode(",", $data);
+}
+
+function redis_get_DataArray($db)
+{
+    $redis = new Redis();
+    $redis->connect('127.0.0.1',6379);
+
+    $data = $redis->hgetall($db);
+    return $data;
 }
 
 function getDataArray($db)

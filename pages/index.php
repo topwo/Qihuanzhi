@@ -1,9 +1,9 @@
 <?php
 // echo $_GET['key']; 请求操作，all
 require_once '../php/redis.php';
-require_once '../php/array.php';
+require_once '../php/json.php';
 
-$user = getDataArray('user.1');
+$user = redis_get_DataArray('1.info');
 ?>
 
 <!DOCTYPE>

@@ -1,10 +1,9 @@
 <?php
 // echo $_GET['key']; 请求操作，all
 require_once '../php/redis.php';
-require_once '../php/array.php';
+require_once '../php/json.php';
 
-$user = getDataArray('user.1');
-//echo $user['team1.cards'];
+$u_info = redis_get_DataArray('1.info');
 
 ?>
 
@@ -40,7 +39,7 @@ function chang_position_end(id)
     $.ajax({
         type: "POST",
         url: "../php/redis.php",
-        data: 'op=set&db=user.1&key=team1.cards&value='+tmp4,
+        data: 'op=set&db=1.info&key=team1.cards&value='+tmp4,
         contentType: "application/x-www-form-urlencoded"
     });
 }
@@ -55,7 +54,7 @@ function chang_position_end(id)
             echo '<div class="row">';
         }
 
-        $t = ex($user['team1.cards'])[$i]!=0?'<img src="../img/card/'.ex($user['team1.cards'])[$i].'.png" />':'<img src="../img/card/0.png" />';
+        $t = ex($u_info['team1.cards'])[$i]!=0?'<img src="../img/card/'.ex($u_info['team1.cards'])[$i].'.png" />':'<img src="../img/card/0.png" />';
         echo '<div class="row-img" id="img',$i,'" onclick="chang_position_start(',$i,')">',$t,'</div>';
 
         if ($i % 3 == 2)
@@ -68,7 +67,7 @@ function chang_position_end(id)
         <img class="row-icon" src="../img/ui/button.battle.ready.teamskill.png" />
         <span class="row-icon-big">队长技能</span><span class="row-icon-small">大量增加全体物理攻击</span><span class="row-icon-big">+2</span>
     </div>
-    <div class="row" style="text-align:center;">
+    <div id="go_battle" class="row" style="text-align:center;">
         <img class="row-button" src="../img/ui/button.battle.ready.start.png" />
     </div>
     <div id="div_change_position">
@@ -89,4 +88,9 @@ $('#nav-top-div').html(
     <img class="nav-top-button" src="../img/ui/button.battle.ready.array.png">\
     '
 );
+
+$("#go_battle").click(function()
+{
+    location.href = '../pages/battle.php';
+});
 </script>

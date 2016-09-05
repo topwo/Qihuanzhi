@@ -1,6 +1,5 @@
 <?php
 require_once '../php/json.php';
-
 require_once '../php/redis.php';
 
 // 卡牌基本数据
@@ -17,18 +16,7 @@ $cards_talent = get_data_array_byid('cards.param','cards.talent',$cards['talent'
 // 组合
 $cards_collect = get_dataArray('cards.param','cards.collect');
 
-$u_cards = getDataArray('1.cards');
-
-
-
-//$cards_talent = getDataArray('cards.talent');
-//$cards_level = getDataArray('cards.level');
-//$cards_level_skill = getDataArray('cards.level.skill');
-//$cards_level_name = getDataArray('cards.level.name');
-//$cards_collect = getDataArray('cards.collect');
-//$user_cards = getDataArray('user.1.cards');
-//$cards_coefficient = getDataArray('cards.coefficient');
-//$cards_skill = getDataArray_Skill('cards.skill');
+$u_cards = redis_get_DataArray('1.cards');
 ?>
 
 <div id="card-detail">
