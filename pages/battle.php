@@ -4,7 +4,7 @@ require_once '../php/redis.php';
 require_once '../php/json.php';
 
 $u_info = redis_get_DataArray('1.info');
-
+$u_tmp_enemy_cards = redis_get_DataArray('1.tmp');
 ?>
 
 <!DOCTYPE>
@@ -39,34 +39,34 @@ $u_info = redis_get_DataArray('1.info');
 
 <div class="top">
     <div style="margin-top: 16px;">
-        <img onclick="action_queue()" class="card" id="e4" src="../img/card/<?php echo ex($u_info['team1.cards'])[0] ?>.png">
-        <img class="card" id='e5' src="../img/card/<?php echo ex($u_info['team1.cards'])[1] ?>.png">
-        <img class="card" id='e6' src="../img/card/<?php echo ex($u_info['team1.cards'])[2] ?>.png">
+        <img onclick="action_queue()" class="card" id="e4" src="../img/card/<?php echo ex($u_tmp_enemy_cards['enemy.cards'])[3] ?>.png">
+        <img class="card" id='e5' src="../img/card/<?php echo ex($u_tmp_enemy_cards['enemy.cards'])[4] ?>.png">
+        <img class="card" id='e6' src="../img/card/<?php echo ex($u_tmp_enemy_cards['enemy.cards'])[5] ?>.png">
     </div>
       <div style="margin-top: 3px;">
-          <div class="div_progress" id="progress_e4">
+          <div class="div_progress" id="progress_e4" style="<?php echo ex($u_tmp_enemy_cards['enemy.cards'])[3]==0?'visibility:hidden;':'' ?>">
               <div class="progress" style="width: 10%;"></div>
           </div>
-          <div class="div_progress" id="progress_e5">
+          <div class="div_progress" id="progress_e5" style="<?php echo ex($u_tmp_enemy_cards['enemy.cards'])[4]==0?'visibility:hidden;':'' ?>">
               <div class="progress" style="width: 90%;"></div>
           </div>
-          <div class="div_progress" id="progress_e6">
+          <div class="div_progress" id="progress_e6" style="<?php echo ex($u_tmp_enemy_cards['enemy.cards'])[5]==0?'visibility:hidden;':'' ?>">
               <div class="progress" style="width: 50%;"></div>
           </div>
       </div>
       <div style="margin-top: 12px;">
-          <img class="card" id='e1' src="../img/card/<?php echo ex($u_info['team1.cards'])[3] ?>.png">
-          <img class="card" id='e2' src="../img/card/<?php echo ex($u_info['team1.cards'])[4] ?>.png">
-          <img class="card" id='e3' src="../img/card/<?php echo ex($u_info['team1.cards'])[5] ?>.png">
+          <img class="card" id='e1' src="../img/card/<?php echo ex($u_tmp_enemy_cards['enemy.cards'])[0] ?>.png">
+          <img class="card" id='e2' src="../img/card/<?php echo ex($u_tmp_enemy_cards['enemy.cards'])[1] ?>.png">
+          <img class="card" id='e3' src="../img/card/<?php echo ex($u_tmp_enemy_cards['enemy.cards'])[2] ?>.png">
       </div>
       <div style="margin-top: 3px;">
-          <div class="div_progress" id="progress_e1">
+          <div class="div_progress" id="progress_e1" style="<?php echo ex($u_tmp_enemy_cards['enemy.cards'])[0]==0?'visibility:hidden;':'' ?>">
               <div class="progress" style="width: 10%;"></div>
           </div>
-          <div class="div_progress" id="progress_e2">
+          <div class="div_progress" id="progress_e2" style="<?php echo ex($u_tmp_enemy_cards['enemy.cards'])[1]==0?'visibility:hidden;':'' ?>">
               <div class="progress" style="width: 90%;"></div>
           </div>
-          <div class="div_progress" id="progress_e3">
+          <div class="div_progress" id="progress_e3" style="<?php echo ex($u_tmp_enemy_cards['enemy.cards'])[2]==0?'visibility:hidden;':'' ?>">
               <div class="progress" style="width: 50%;"></div>
           </div>
       </div>
@@ -252,8 +252,8 @@ function anim_close_attack(mId,eId,time,img)
 <script>
 function action_queue()
 {
-    setTimeout("event_long_attack('m1','e3','fire')", 0);
-    setTimeout("event_close_attack('m3','e2','attack')", 2000);
+    setTimeout("event_long_attack('m2','e3','fire')", 0);
+    setTimeout("event_close_attack('m4','e2','attack')", 2000);
     setTimeout("history.back(-1)", 5000);
 }
 

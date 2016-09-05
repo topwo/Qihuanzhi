@@ -3,7 +3,8 @@
 require_once '../php/redis.php';
 require_once '../php/json.php';
 
-$user = redis_get_DataArray('1.info');
+$u_info = redis_get_DataArray('1.info');
+
 ?>
 
 <!DOCTYPE>
@@ -45,8 +46,8 @@ $("#div_announcement_alpha").click(function(){
 
 <div class="nav-top">
     <img id='nav-top-img' src="../img/ui/top.png" style="width:100%;">
-    <div id='nav-top-gold'><?php echo $user['gold'] ?></div>
-    <div id='nav-top-fushi'><?php echo $user['fushi'] ?></div>
+    <div id='nav-top-gold'><?php echo $u_info['gold'] ?></div>
+    <div id='nav-top-fushi'><?php echo $u_info['fushi'] ?></div>
     <div id='nav-top-div'>
         <img class="nav-top-button" src="../img/ui/button_hero.png">
     </div>

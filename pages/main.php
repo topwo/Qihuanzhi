@@ -1,18 +1,18 @@
 <?php
 // echo $_GET['key']; 请求操作，all
 require_once '../php/redis.php';
-require_once '../php/array.php';
+require_once '../php/json.php';
 
-$user = getDataArray('user.1');
+$u_info = redis_get_DataArray('1.info');
 ?>
 
 <div id="main">
     <img src="../img/ui/main.png" class="row">
-    <img src="../img/avater/<?php echo ex($user['main.cards'])[0] ?>.png" class="card" style="left: calc(0% + 10px)" />
-    <img src="../img/avater/<?php echo ex($user['main.cards'])[1] ?>.png" class="card" style="left: calc(20% + 8px)" />
-    <img src="../img/avater/<?php echo ex($user['main.cards'])[2] ?>.png" class="card" style="left: calc(40% + 6px)" />
-    <img src="../img/avater/<?php echo ex($user['main.cards'])[3] ?>.png" class="card" style="left: calc(60% + 5px)" />
-    <img src="../img/avater/<?php echo ex($user['main.cards'])[4] ?>.png" class="card" style="left: calc(80% + 2px)" />
+    <img src="../img/avater/<?php echo ex($u_info['main.cards'])[0] ?>.png" class="card" style="left: calc(0% + 10px)" />
+    <img src="../img/avater/<?php echo ex($u_info['main.cards'])[1] ?>.png" class="card" style="left: calc(20% + 8px)" />
+    <img src="../img/avater/<?php echo ex($u_info['main.cards'])[2] ?>.png" class="card" style="left: calc(40% + 6px)" />
+    <img src="../img/avater/<?php echo ex($u_info['main.cards'])[3] ?>.png" class="card" style="left: calc(60% + 5px)" />
+    <img src="../img/avater/<?php echo ex($u_info['main.cards'])[4] ?>.png" class="card" style="left: calc(80% + 2px)" />
 
     <img id="go_main_hero" src="../img/ui/menu_hero.png" class="card" style="left: calc(0% + 18px);top:160px;" />
     <img src="../img/ui/menu_strengthen.png" class="card" style="left: calc(25% + 8px);top:160px;" />

@@ -1,66 +1,25 @@
 <?php
 // echo $_GET['key']; 请求操作，all
 require_once '../php/redis.php';
-require_once '../php/array.php';
+require_once '../php/json.php';
+require_once '../php/third.party.php';
 
+$instances = get_dataArray('instance','instance');
 ?>
 
 <div id="instance-easy" class="instance" style="display:block;">
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">第十一章 祭坛</span>
-        <span class="instance-list-star">★ 0/15</span>
-    </div>
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">第十章 遗迹</span>
-        <span class="instance-list-star">★ 0/15</span>
-    </div>
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">第九章 埋骨圣地</span>
-        <span class="instance-list-star">★ 0/15</span>
-    </div>
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">第八章 巨魔家园</span>
-        <span class="instance-list-star">★ 0/15</span>
-    </div>
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">第七章 废墟</span>
-        <span class="instance-list-star">★ 0/15</span>
-    </div>
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">第六章 高原</span>
-        <span class="instance-list-star">★ 0/15</span>
-    </div>
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">第五章 教堂</span>
-        <span class="instance-list-star">★ 0/15</span>
-    </div>
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">第四章 荒泽</span>
-        <span class="instance-list-star">★ 0/15</span>
-    </div>
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">第三章 银堡</span>
-        <span class="instance-list-star">★ 0/15</span>
-    </div>
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">第二章 废矿</span>
-        <span class="instance-list-star">★ 0/15</span>
-    </div>
-    <div id="instance-easy-1-go" class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">第一章 溶洞</span>
-        <span class="instance-list-star">★ 0/15</span>
-    </div>
+    <?php
+    foreach (array_reverse($instances) as $key => $value)
+    {
+        echo '
+        <div id="instance-easy-',count($instances)-$key,'-go" class="instance-list">
+            <span class="instance-list-status">已通关</span>
+            <span class="instance-list-title">第',num2str(count($instances)-$key),'章 ',$value['name'],'</span>
+            <span class="instance-list-star">★ 0/15</span>
+        </div>
+        ';
+    }
+    ?>
 </div>
 
 <div id="instance-hard" class="instance">
@@ -99,32 +58,20 @@ require_once '../php/array.php';
 
 <!-- 副本细节 -->
 <div id="instance-easy-1" class="instance">
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">1-5 鱼人萨满</span>
-        <span class="instance-list-power">体力：6</span>
-    </div>
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">1-4 永生者</span>
-        <span class="instance-list-power">体力：6</span>
-    </div>
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">1-3 烤肉莱恩</span>
-        <span class="instance-list-power">体力：6</span>
-    </div>
-    <div class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-title">1-2 瑟迪粉丝</span>
-        <span class="instance-list-power">体力：6</span>
-    </div>
-    <div id="instance-easy-1-ready" class="instance-list">
-        <span class="instance-list-status">已通关</span>
-        <span class="instance-list-clear">★☆☆</span>
-        <span class="instance-list-title">1-1 大囧龟</span>
-        <span class="instance-list-power">体力：6</span>
-    </div>
+    <?php
+    foreach (array_reverse($instances[0]) as $key => $value)
+    {
+        if (is_numeric($key))
+        echo '
+        <div id="instance-easy-',count($instances[0])-2-$key,'-ready" class="instance-list">
+            <span class="instance-list-status">已通关</span>
+            <span class="instance-list-clear">★☆☆</span>
+            <span class="instance-list-title">第',count($instances[0])-2-$key,'章 ',ex($value)[0],'</span>
+            <span class="instance-list-power">体力：',ex($value)[1],'</span>
+        </div>
+        ';
+    }
+    ?>
     <div class="instance-listInfo">
         溶洞
         <span class="instance-list-description">
@@ -170,6 +117,13 @@ function filter_block(key)
 // 从副本跳转到战斗准备页面
 $("#instance-easy-1-ready").click(function()
 {
+    $.ajax({
+        type: "POST",
+        url: "../php/redis.php",
+        data: 'op=set&db=1.tmp&key=enemy.cards&value=<?php echo implode(',',(@array_splice(ex($instances[0]['1']),2))) ?>',
+        contentType: "application/x-www-form-urlencoded"
+    });
+
     var xmlhttp=new XMLHttpRequest();
     xmlhttp.open("GET","../pages/battle.ready.php",true);
     xmlhttp.send();
