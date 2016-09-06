@@ -6,7 +6,7 @@ require_once '../php/json.php';
 $u_info = redis_get_DataArray('1.info');
 $u_cards = redis_get_DataArray('1.cards');
 
-
+$cards = getDataArray('cards.coefficient');
 $cards_coefficient = getDataArray('cards.coefficient');
 ?>
 
