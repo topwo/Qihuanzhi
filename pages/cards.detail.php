@@ -5,7 +5,7 @@ require_once '../php/redis.php';
 // 卡牌基本数据
 $cards = get_data_array_byid('cards','cards', $_GET['value']-1);
 $cards_coefficient = get_data_array_byid('cards.param','cards.coefficient', $_GET['value']-1);
-$cards_level = get_data_array_byid('cards.param','cards.level', $cards['star']);
+$cards_level = get_data_array_byid('cards.param','cards.level', $cards['star']-1);
 
 // 普通技能
 $cards_skillNormal = get_data_array_byid('cards.skill','cards.skill',$cards['skillNormal']-1);

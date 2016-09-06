@@ -20,11 +20,11 @@
     [
         {
             "id": "1",
-            "star": "3",
+            "star": "1",
             "name": "哀木涕",
             "job": "战士",
-            "firstHP": "3260",
-            "firstATT": "216",
+            "firstHP": "1109",
+            "firstATT": "116",
             "skillNormal": "1",
             "skillActive": "2",
             "talent": "1",
@@ -39,7 +39,7 @@
             "firstHP": "1500",
             "firstATT": "304",
             "skillNormal": "9",
-            "skillActive": "4",
+            "skillActive": "5",
             "talent": "1",
             "desc": "强势的小母牛，永远是正确的，眼里容不得沙子，对哀木涕有意思。"
         },

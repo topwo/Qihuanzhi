@@ -53,7 +53,7 @@
             "id": "5",
             "name": "高级闪电链",
             "desc": "对随机3目标使用法术攻击。",
-            "coe.att": "0.78",
+            "coe.att": "0.178",
             "coe.count": "3",
             "skill.start": "1",
             "skill.cycle": "3",

@@ -60,7 +60,7 @@ $redis->hmset('1.info', array(
 $redis->hmset('1.cards', array(
     // key=卡牌编号，value=卡牌数据
     // [0]等级
-    '1' => '30',
+    '1' => '10',
     '2' => '30',
     '3' => '30',
 ));
