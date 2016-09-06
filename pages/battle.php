@@ -32,6 +32,7 @@ for ($i=0; $i <= 5; $i++)
         $$m = array(
             'id' => $i,
             'hp' => $u_cards[$current_card_id] * $cards_coefficient['hp.coe'] + $cards['firstHP'],
+            'maxHp' => $u_cards[$current_card_id] * $cards_coefficient['hp.coe'] + $cards['firstHP'],
             'att' => $u_cards[$current_card_id] * $cards_coefficient['att.coe'] + $cards['firstATT'],
             'skillNormal' => $cards_skillNormal,
             'skillActive' => $cards_skillActive
@@ -62,14 +63,27 @@ for ($i=0; $i <= 5; $i++)
     }
 }
 
-// 30回合
-for ($t=1; $t <= 7; $t++)
+// 得到 [存在] 且 [当前生命比例最低] 的 [一个] [敌人]
+$tmp = function() use (&$m0,&$m1,&$m2,&$m3,&$m4,&$m5)
 {
-    echo 'round '.$t.'<br />';
+    $tmp2 = array();
+    for ($g=0; $g <=5 ; $g++)
+    {
+        $t = 'm'.$g;
+        if (isset($$t))
+        {
+            $tmp2[$g] = (float)($$t['hp'] / $$t['maxHp']);
+        }
+    }
+    echo min(array_keys($tmp2));
+};
+
+// 30回合
+for ($k=1; $k <= 7; $k++)
+{
+    echo 'round '.$k.'<br />';
     for ($i=0; $i <= 5; $i++)
     {
-
-
 
 
         $m = 'm'.$i;
@@ -82,15 +96,31 @@ for ($t=1; $t <= 7; $t++)
                 if(isset($$e))
                 {
 
-                    if ($t % 3 == 1)
+                    if ($k % 3 == 1)
                     {
-                        echo 'm'.$$m['id'].'发动技能攻击，造成',round($$m['att'] * $$m['skillActive']['coe.att']),'伤害，';
-                        echo 'e'.$$e['id'].'生命',$$e['hp'] = $$e['hp'] - round($$m['att'] * $$m['skillActive']['coe.att']);
+                        switch ($$m['skillActive']['type'])
+                        {
+                            case '1':
+                                echo 'm'.$$m['id'].'发动',$$m['skillActive']['name'],'，造成',round($$m['att'] * $$m['skillActive']['coe.att']),'伤害，';
+                                echo 'e'.$$e['id'].'生命',$$e['hp'] = $$e['hp'] - round($$m['att'] * $$m['skillActive']['coe.att']);
+                                break;
+                        }
 
                     }
-                    else {
-                        echo 'm'.$$m['id'].'发动普通攻击，造成',round($$m['att'] * $$m['skillNormal']['coe.att']),'伤害，';
-                        echo 'e'.$$e['id'].'生命',$$e['hp'] = $$e['hp'] - round($$m['att'] * $$m['skillNormal']['coe.att']);
+                    else
+                    {
+
+                        switch ($$m['skillNormal']['type'])
+                        {
+                            case '1':
+                                echo 'm'.$$m['id'].'发动',$$m['skillNormal']['name'],'，造成',round($$m['att'] * $$m['skillNormal']['coe.att']),'伤害，';
+                                echo 'e'.$$e['id'].'生命',$$e['hp'] = $$e['hp'] - round($$m['att'] * $$m['skillNormal']['coe.att']);
+                                break;
+                            case '2':
+                                echo 'm'.$$m['id'].'发动',$$m['skillNormal']['name'],'，恢复m',$tmp(),' ',round($$m['att'] * $$m['skillNormal']['coe.cure']),'生命，';
+                                echo 'm'.$m1['id'].'生命',$m1['hp'] = $m1['hp'] + round($$m['att'] * $$m['skillNormal']['coe.cure']);
+                                break;
+                        }
                     }
 
                     if ($$e['hp'] <= 0)
@@ -108,7 +138,7 @@ for ($t=1; $t <= 7; $t++)
         $e = 'e'.$i;
         if(isset($$e))
         {
-            echo 'e'.$$e['id'].'发动攻击，造成',round($$e['att'] * $$e['skillNormal']['coe.att']),'伤害，';
+            echo 'e'.$$e['id'].'发动',$$e['skillNormal']['name'],'，造成',round($$e['att'] * $$e['skillNormal']['coe.att']),'伤害，';
             for ($w=0; $w <= 5; $w++)
             {
                 $m = 'm'.$w;

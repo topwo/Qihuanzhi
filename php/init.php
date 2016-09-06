@@ -49,7 +49,7 @@ $redis->hmset('1.info', array(
     // 首页卡牌
     'main.cards' => '1,2,3,4,1',
     // 出战卡牌 - 团队1
-    'team1.cards' => '1,0,0,0,0,2',
+    'team1.cards' => '1,0,3,0,0,2',
     // 拥有卡牌
     'cards' => '1,2,3',
 
