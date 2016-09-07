@@ -1,7 +1,7 @@
 <?php
 
 
-
+/*
 function get_data_array($file,$db,$index)
 {
     $json = file_get_contents("../data/".$file.".json","r");
@@ -9,12 +9,34 @@ function get_data_array($file,$db,$index)
     return $str[$db][$index];
 }
 
+*/
 
 
-
-function ex($data,$sign=',',$filter='')
+function ex($data,$op=null,$param=null)
 {
-    return explode($sign, str_replace($filter,'',$data));
+    // str分割成array
+    $array = explode(',', $data);
+    if($op == 're')
+    {
+        // 去除掉指定值
+        foreach ($array as $key => $value)
+        {
+            if( $value == $param ) unset( $array[$key] );
+        }
+        // 重排数据
+        return $array;
+    }
+    return $array;
+}
+
+// 根据键值 重排
+function reKey($array,$except)
+{
+    foreach ($array as $key => $value)
+    {
+        if( $value == $except ) unset( $array[$key] );
+    }
+    return array_keys($array);
 }
 
 function get_dataArray($file,$db)

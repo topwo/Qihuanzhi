@@ -13,11 +13,6 @@ $redis->hmset('user_id_1', array(
     'fushi' => '727',
 ));
 
-
-// 用户拥有卡牌设定
-
-
-
 // 副本
 $redis->hmset('instance-1.1', array(
     // 卡牌总数
@@ -38,9 +33,13 @@ $redis->hmset('data', array(
 
 
 
-// 用户设定
+
+
+
+
+// 临时
 $redis->hmset('1.tmp', array(
-    // 首页卡牌
+    // 敌队卡牌
     'enemy.cards' => '0,0,0,0,0,0',
 ));
 
