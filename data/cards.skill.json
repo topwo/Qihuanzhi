@@ -13,7 +13,7 @@
             "name": "普通攻击",
             "desc": "对单体使用普通物理攻击。",
             "coe.att": "0.84",
-            "coe.count": "1",
+            "att.count": "1",
             "type": "1"
         },
         {
@@ -21,7 +21,7 @@
             "name": "重击",
             "desc": "对单体使用强力物理攻击。",
             "coe.att": "1.48",
-            "coe.count": "1",
+            "att.count": "1",
             "skill.start": "1",
             "skill.cycle": "3",
             "skill.isRecycle": "1",
@@ -32,7 +32,7 @@
             "name": "高级重击",
             "desc": "对单体使用强力物理攻击。",
             "coe.att": "1.77",
-            "coe.count": "1",
+            "att.count": "1",
             "skill.start": "1",
             "skill.cycle": "3",
             "skill.isRecycle": "1",
@@ -43,7 +43,7 @@
             "name": "闪电链",
             "desc": "对单体使用普通法术攻击。",
             "coe.att": "0.65",
-            "coe.count": "1",
+            "att.count": "1",
             "skill.start": "1",
             "skill.cycle": "3",
             "skill.isRecycle": "1",
@@ -54,7 +54,7 @@
             "name": "高级闪电链",
             "desc": "对随机3目标使用法术攻击。",
             "coe.att": "0.178",
-            "coe.count": "3",
+            "att.count": "3",
             "skill.start": "1",
             "skill.cycle": "3",
             "skill.isRecycle": "1",
@@ -65,7 +65,7 @@
             "name": "复活术",
             "desc": "复活队友，每场1次。",
             "coe.cure": "0.6",
-            "coe.count": "1",
+            "att.count": "1",
             "skill.start": "0",
             "skill.cycle": "1",
             "skill.isRecycle": "0",
@@ -76,7 +76,7 @@
             "name": "高级复活术",
             "desc": "复活队友，每场1次。",
             "coe.cure": "0.72",
-            "coe.count": "1",
+            "att.count": "1",
             "skill.start": "1",
             "skill.cycle": "1",
             "skill.isRecycle": "0",
@@ -87,7 +87,7 @@
             "name": "治疗术",
             "desc": "恢复当前生命比例最低的1名队友微量生命",
             "coe.cure": "0.66",
-            "coe.count": "1",
+            "att.count": "1",
             "type": "2"
         },
         {
@@ -95,7 +95,7 @@
             "name": "闪电箭",
             "desc": "对单体使用普通法术攻击",
             "coe.att": "0.74",
-            "coe.count": "1",
+            "att.count": "1",
             "type": "1"
         }
     ]
